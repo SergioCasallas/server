@@ -86,7 +86,6 @@ body {
 /* !Table Info */
 
 .table-info {
-  background-color: red;
   border-collapse: collapse;
   border: 1px solid black;
   width: 95%;
