@@ -282,7 +282,7 @@ height: 793px;
             numeroWorkPlan === null ? "" : numeroWorkPlan
           }</td>
           <td class="table__datos--head-subtitle-items">
-            ${fechaHora === null ? " " : fechaHora}
+            ${fechaHora === undefined || null ? "" : fechaHora}
           </td>
           <td class="table__datos--head-subtitle-items">${
             numeroRecibo === null ? "" : numeroRecibo

@@ -2,9 +2,8 @@
 
 module.exports = (datosReciboPagosPdf) => {
   console.log(datosReciboPagosPdf.fechaInicial);
-  // console.log(datosReciboPagosPdf.pago.length);
-  // console.log(datosReciboPagosPdf.pago[0].length);
   let count = 0;
+  let tableID = "";
 
   datosReciboPagosPdf.pago[0].length > 1
     ? datosReciboPagosPdf.pago[0].map(
@@ -21,6 +20,72 @@ module.exports = (datosReciboPagosPdf) => {
     numero = String(numero);
     return numero.replace(/\B(?=(\d{3})+(?!\d))/g, separador);
   };
+
+  datosReciboPagosPdf.pago[0].length > 1
+    ? datosReciboPagosPdf.pago[0].map(
+        (item) =>
+          (tableID += ` 
+          <tr class="table-head-tr-items">
+
+                  <td class="table-body-td">${
+                    item.Metodo_Pago !== null ? item.Metodo_Pago : ""
+                  }</td>
+                  <td class="table-body-td">${
+                    item.Cuenta !== null ? item.Cuenta : ""
+                  }</td>
+                  <td class="table-body-td">${
+                    item.Recibo !== null ? item.Recibo : ""
+                  }</td>
+                  <td class="table-body-td">${
+                    item.Fecha_Pago !== null
+                      ? item.Fecha_Pago.substr(0, 10)
+                      : ""
+                  }</td>
+                  <td class="table-body-td">${
+                    item.Numero !== null ? item.Numero : ""
+                  }</td>
+                  <td class="table-body-td">${
+                    item.Fecha !== null ? item.Fecha.substr(0, 10) : ""
+                  }</td>
+                  <td class="table-body-td">${
+                    item.Valor !== null ? separadorMiles(item.Valor) : ""
+                  }</td>
+                  <td class="table-body-td">${separadorMiles(
+                    item.Valor - item.Saldo
+                  )}</td>
+
+          </tr>`)
+      )
+    : datosReciboPagosPdf.pago.map(
+        (item) =>
+          (tableID += `
+         <tr class="table-head-tr-items">
+                <td class="table-body-td">${
+                  item.Metodo_Pago !== null ? item.Metodo_Pago : ""
+                }</td>
+                <td class="table-body-td">${
+                  item.Cuenta !== null ? item.Cuenta : ""
+                }</td>
+                <td class="table-body-td">${
+                  item.Recibo !== null ? item.Recibo : ""
+                }</td>
+                <td class="table-body-td">${
+                  item.Fecha_Pago !== null ? item.Fecha_Pago.substr(0, 10) : ""
+                }</td>
+                <td class="table-body-td">${
+                  item.Numero !== null ? item.Numero : ""
+                }</td>
+                <td class="table-body-td">${
+                  item.Fecha !== null ? item.Fecha.substr(0, 10) : ""
+                }</td>
+              <td class="table-body-td">${
+                item.Valor !== null ? separadorMiles(item.Valor) : ""
+              }</td>
+                <td class="table-body-td">${separadorMiles(
+                  item.Valor - item.Saldo
+                )}</td>
+          </tr>`)
+      );
 
   return `
 
@@ -216,74 +281,7 @@ body {
         </thead>
         <tbody>
 
-
-
-
-        ${
-          datosReciboPagosPdf.pago[0].length > 1
-            ? datosReciboPagosPdf.pago[0].map(
-                (item) =>
-                  ` <tr class="table-head-tr-items">
-
-          <td class="table-body-td">${
-            item.Metodo_Pago !== null ? item.Metodo_Pago : ""
-          }</td>
-          <td class="table-body-td">${
-            item.Cuenta !== null ? item.Cuenta : ""
-          }</td>
-          <td class="table-body-td">${
-            item.Recibo !== null ? item.Recibo : ""
-          }</td>
-          <td class="table-body-td">${
-            item.Fecha_Pago !== null ? item.Fecha_Pago.substr(0, 10) : ""
-          }</td>
-          <td class="table-body-td">${
-            item.Numero !== null ? item.Numero : ""
-          }</td>
-          <td class="table-body-td">${
-            item.Fecha !== null ? item.Fecha.substr(0, 10) : ""
-          }</td>
-          <td class="table-body-td">${
-            item.Valor !== null ? separadorMiles(item.Valor) : ""
-          }</td>
-          <td class="table-body-td">${separadorMiles(
-            item.Valor - item.Saldo
-          )}</td>
-
- </tr>`
-              )
-            : datosReciboPagosPdf.pago.map(
-                (item) =>
-                  ` <tr class="table-head-tr-items">
-
-          <td class="table-body-td">${
-            item.Metodo_Pago !== null ? item.Metodo_Pago : ""
-          }</td>
-          <td class="table-body-td">${
-            item.Cuenta !== null ? item.Cuenta : ""
-          }</td>
-          <td class="table-body-td">${
-            item.Recibo !== null ? item.Recibo : ""
-          }</td>
-          <td class="table-body-td">${
-            item.Fecha_Pago !== null ? item.Fecha_Pago.substr(0, 10) : ""
-          }</td>
-          <td class="table-body-td">${
-            item.Numero !== null ? item.Numero : ""
-          }</td>
-          <td class="table-body-td">${
-            item.Fecha !== null ? item.Fecha.substr(0, 10) : ""
-          }</td>
-         <td class="table-body-td">${
-           item.Valor !== null ? separadorMiles(item.Valor) : ""
-         }</td>
-          <td class="table-body-td">${separadorMiles(
-            item.Valor - item.Saldo
-          )}</td>
-
- </tr>`
-              )
-        }
+         ${tableID}
 
         </tbody>
       </table>
