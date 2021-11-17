@@ -20,8 +20,7 @@ server.use(cors());
 server.use(morgan("dev"));
 require("dotenv").config();
 
-// PORT
-const port = process.env.port || 4000;
+const PORT = process.env.PORT || 5000;
 
 // Routes
 // Data-Login
@@ -90,6 +89,4 @@ server.use(
 // Archivos Estaticos
 server.use(express.static(path.join(__dirname + "public")));
 
-server.listen(port,'0.0.0.0', () => {
-  console.log(`Corriendo en el puerto ${port}`);
-});
+server.listen(PORT, () => console.log(`Listening on ${PORT}`));
