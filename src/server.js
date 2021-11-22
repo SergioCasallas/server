@@ -114,8 +114,8 @@ server.use((error, req, res, next) => {
     .json({ error: error.message || "Internal System Error" });
 });
 
-// const port = process.env.port || 5000;
+const port = process.env.port || 5000;
 
-// server.listen(port, "0.0.0.0", () => console.log(`Listening on ${port}`));
+server.listen(port, "0.0.0.0", () => console.log(`Listening on ${port}`));
 
 module.exports = server;
