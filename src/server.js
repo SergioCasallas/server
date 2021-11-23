@@ -11,10 +11,6 @@ const connection = require("./db/db");
 // Server
 const server = express();
 
-server.get("/health", (req, res) =>
-  res.status(200).send("Matragra API is running!")
-);
-
 // Middlewares
 // server.use(express.json());
 
@@ -105,17 +101,10 @@ server.use(
 );
 
 // Archivos Estaticos
-server.use(express.static(path.join(__dirname + "public")));
+// server.use(express.static(path.join(__dirname + "public")));
 
-server.use((error, req, res, next) => {
-  console.error(error);
-  res
-    .status(error.status || 500)
-    .json({ error: error.message || "Internal System Error" });
-});
 
 const port = process.env.port || 5000;
 
 server.listen(port, "0.0.0.0", () => console.log(`Listening on ${port}`));
 
-module.exports = server;

@@ -9,7 +9,6 @@ exports.createPdf = async (req, res) => {
   const config = {
     format: "A4", // allowed units: A3, A4, A5, Legal, Letter, Tabloid
     orientation: "landscape",
-    // phantomPath: "/opt/phantomjs_linux-x86_64",
   };
 
   const {
@@ -48,7 +47,25 @@ exports.createPdf = async (req, res) => {
     );
 
     pdf
-      .create(pdfTemplate(datosManifiestoPdf), config)
+      .create(
+        pdfTemplate(
+          fechaActual,
+          entreFechas,
+          nombreCompania,
+          nit,
+          numeroWorkPlan,
+          fechaHora,
+          numeroRecibo,
+          sede,
+          tipoResiduoRecolectado,
+          residuo,
+          cantidadKg,
+          numeroBolsas,
+          nombresRepartidos,
+          identificacion
+        ),
+        config
+      )
       .toFile("PdfsArchiveFinal/Recolecciones.pdf", (err, response) => {
         if (err) return Promise.reject();
 
@@ -56,7 +73,6 @@ exports.createPdf = async (req, res) => {
         res.sendFile(response.filename);
         res.status(200);
       });
-    await generateFileUrl(file, "application/octet-stream", "Prueba.pdf");
   } catch (err) {
     console.error(err);
   }
