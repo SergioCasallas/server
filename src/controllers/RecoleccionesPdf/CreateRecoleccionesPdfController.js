@@ -47,25 +47,7 @@ exports.createPdf = async (req, res) => {
     );
 
     pdf
-      .create(
-        pdfTemplate(
-          fechaActual,
-          entreFechas,
-          nombreCompania,
-          nit,
-          numeroWorkPlan,
-          fechaHora,
-          numeroRecibo,
-          sede,
-          tipoResiduoRecolectado,
-          residuo,
-          cantidadKg,
-          numeroBolsas,
-          nombresRepartidos,
-          identificacion
-        ),
-        config
-      )
+      .create(template, config)
       .toFile("PdfsArchiveFinal/Recolecciones.pdf", (err, response) => {
         if (err) return Promise.reject();
 

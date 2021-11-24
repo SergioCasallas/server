@@ -37,24 +37,15 @@ require("dotenv").config();
 
 // Routes
 
-// Data-Login
+//! Data-Login
 server.use("/login", require("./routes/Login"));
-// Data-Facturas
+
+//! Data-Facturas
 server.use("/sedes", require("./routes/Sedes"));
 
 server.use("/facturas", require("./routes/Facturas"));
 
 server.use("/recolecciones", require("./routes/Recolecciones"));
-
-// ! Recolecciones Pdf
-server.use(
-  "/createPdfRecolecciones",
-  require("./routes/RecoleccionesPdf/CreateRecoleccionesPdf")
-);
-server.use(
-  "/getRecoleccionesPdf",
-  require("./routes/RecoleccionesPdf/GetRecoleccionesPdf")
-);
 
 // !Datos Reportes Pagos
 
@@ -66,27 +57,45 @@ server.use("/reportesSaldos", require("./routes/ReportesSaldos"));
 // !Datos Reportes Saldos
 server.use("/reportesManifiesto", require("./routes/ReportesManifiestos"));
 
+// ! Recolecciones Pdf
+server.use(
+  "/createPdfRecolecciones",
+  require("./routes/RecoleccionesPdf/CreateRecoleccionesPdf")
+);
+
+server.use(
+  "/getRecoleccionesPdf",
+  require("./routes/RecoleccionesPdf/GetRecoleccionesPdf")
+);
+
+// !Cerrar Recolecciones Pdf
+
 // ! Reportes Pagos Pdf
 
 server.use(
-  "/createReportePagosPdf",
+  "/createReportesPagosPdf",
   require("./routes/ReportePdf/ReportesPagosPdf/CreateReportesPagos")
 );
+
 server.use(
   "/getReportesPagosPdf",
   require("./routes/ReportePdf/ReportesPagosPdf/GetReportesPagos")
 );
 
+// !Cerrar Reportes Pagos Pdf
+
 // ! Saldos Pdf
 
 server.use(
-  "/createReporteSaldosPdf",
+  "/createReportesSaldosPdf",
   require("./routes/ReportePdf/ReportesSaldosPdf/CreateReportesSaldos")
 );
 server.use(
-  "/getReporteSaldosPdf",
+  "/getReportesSaldosPdf",
   require("./routes/ReportePdf/ReportesSaldosPdf/GetReportesSaldos")
 );
+
+// ! CerrarSaldos Pdf
 
 // ! Manifiestos Pdf
 
@@ -100,11 +109,11 @@ server.use(
   require("./routes/ReportePdf/ReportesManifiestosPdf/GetManifiestosPdf")
 );
 
+// ! Cerra Manifiestos Pdf
+
 // Archivos Estaticos
 // server.use(express.static(path.join(__dirname + "public")));
-
 
 const port = process.env.port || 5000;
 
 server.listen(port, "0.0.0.0", () => console.log(`Listening on ${port}`));
-

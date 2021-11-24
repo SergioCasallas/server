@@ -15,6 +15,7 @@ exports.createReportesPagosPdf = async (req, res) => {
 
       res.setHeader("Content-Type", "application/octet-stream");
       res.sendFile(response.filename);
+      console.log(response.file);
       res.status(200);
     });
 };
