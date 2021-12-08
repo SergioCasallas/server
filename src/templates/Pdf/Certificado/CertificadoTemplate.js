@@ -78,7 +78,8 @@ module.exports = (dataCertificadoPdf) => {
 }
 
 .t-residuos__head{
-  height: 20px;
+  height: 10px;
+  vertical-align: top;
 }
 
 .t-residuos__body{
@@ -183,10 +184,10 @@ module.exports = (dataCertificadoPdf) => {
       </div>
 
       <table class="t-residuos">
-        <tr>
-          <th class="t-residuos__head">Tipo de Residuo</th>
-          <th class="t-residuos__head">Descripcion</th>
-          <th class="t-residuos__head">Peso Kg</th>
+        <tr class="t-residuos__head" >
+          <th>Tipo de Residuo</th>
+          <th>Descripcion</th>
+          <th>Peso Kg</th>
         </tr>
         ${datosTable}
       </table>
