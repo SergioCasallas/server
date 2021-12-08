@@ -57,6 +57,9 @@ server.use("/reportesSaldos", require("./routes/ReportesSaldos"));
 // !Datos Reportes Saldos
 server.use("/reportesManifiesto", require("./routes/ReportesManifiestos"));
 
+// !Datos Reportes Recolecciones
+server.use("/recoleccionesDatosPdf", require("./routes/RecoleccionesDatosPdf"));
+
 // ! Recolecciones Pdf
 server.use(
   "/createPdfRecolecciones",
@@ -107,6 +110,20 @@ server.use(
 server.use(
   "/getManifiestoPdf",
   require("./routes/ReportePdf/ReportesManifiestosPdf/GetManifiestosPdf")
+);
+
+// ! Cerra Manifiestos Pdf
+
+// ! Manifiestos Pdf
+
+server.use(
+  "/createCertificadoPdf",
+  require("./routes/Certificados/CreateCertificadosPdf")
+);
+
+server.use(
+  "/getCertificadoPdf",
+  require("./routes/Certificados/GetCertificadosPdf")
 );
 
 // ! Cerra Manifiestos Pdf

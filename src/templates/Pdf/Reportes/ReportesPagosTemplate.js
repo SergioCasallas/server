@@ -24,7 +24,7 @@ module.exports = (datosReciboPagosPdf) => {
   datosReciboPagosPdf.pago[0].length > 1
     ? datosReciboPagosPdf.pago[0].map(
         (item) =>
-          (tableID += ` 
+          (tableID += `
           <tr class="table-head-tr-items">
 
                   <td class="table-body-td">${

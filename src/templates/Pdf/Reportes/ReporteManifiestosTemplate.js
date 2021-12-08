@@ -38,6 +38,27 @@ module.exports = (datosManifiestoPdf) => {
     countQuantity += parseFloat(item.confirmed_quantity);
   });
 
+  let datosTable="";
+
+  datosManifiestoPdf.map(
+    (item) =>
+      (datosTable += `
+            <tr class="table-info__body-tr-item">
+            <td>${
+              item.residue_physical_state ? item.residue_physical_state : ""
+            }</td>
+            <td>${item.residue ? item.residue : ""}</td>
+            <td>${item.confirmed_weight ? item.confirmed_weight : ""}</td>
+            <td>${item.confirmed_quantity ? item.confirmed_quantity : ""}</td>
+            <td>${item.destroy_buckets ? item.destroy_buckets : ""}</td>
+          </tr>
+
+          `)
+  );
+
+  console.error(datosManifiestoPdf[0].residue_physical_state);
+
+
   return `
 
 
@@ -155,7 +176,8 @@ module.exports = (datosManifiestoPdf) => {
       .table-entrega-info__imagen-firma {
         margin: 0 auto;
         padding: 0;
-        width: 50%;
+        width: 50px;
+        height: 50px;
       }
 
       .table-entrega-info__td {
@@ -185,7 +207,7 @@ module.exports = (datosManifiestoPdf) => {
           </th>
         </tr>
         <tr>
-          <th>Nit:FALTA</th>
+          <th>Nit: 900.808.189-7</th>
         </tr>
       </table>
 
@@ -268,19 +290,7 @@ module.exports = (datosManifiestoPdf) => {
           </tr>
         </thead>
         <tbody>
-        ${datosManifiestoPdf.map(
-          (item) =>
-            `
-            <tr class="table-info__body-tr-item">
-            <td>${item.residue_type ? item.residue_type : ""}</td>
-            <td>${item.residue ? item.residue : ""}</td>
-            <td>${item.confirmed_weight ? item.confirmed_weight : ""}</td>
-            <td>${item.confirmed_quantity ? item.confirmed_quantity : ""}</td>
-            <td>${item.destroy_buckets ? item.destroy_buckets : ""}</td>
-          </tr>
-
-          `
-        )}
+        ${datosTable}
           <tr class="table-info__body-tr">
             <td colspan="2" class="table-info__thead-td">Total</td>
             <td>${countWeight}</td>
@@ -376,7 +386,7 @@ module.exports = (datosManifiestoPdf) => {
             <img class="table-entrega-info__imagen-firma"
             src="data:image/png;base64,${
               driver_signature_path ? driver_signature_path : ""
-            }" alt="" width="100%" />
+            }" alt=""  />
           </td>
         </tr>
         <tr>
@@ -399,7 +409,7 @@ module.exports = (datosManifiestoPdf) => {
             <img class="table-entrega-info__imagen-firma"
             src="data:image/png;base64,${
               client_signature ? client_signature : ""
-            }" alt="" width="100%" />
+            }" alt="" />
           </td>
         </tr>
         <tr>

@@ -1,21 +1,70 @@
 // !Recolecciones y Disponibilidad Final de Residuos// Saldos
 
-module.exports = (
-  fechaActual,
-  entreFechas,
-  nombreCompania,
-  nit,
-  numeroWorkPlan,
-  fechaHora,
-  numeroRecibo,
-  sede,
-  tipoResiduoRecolectado,
-  residuo,
-  cantidadKg,
-  numeroBolsas,
-  nombresRepartidos,
-  identificacion
-) => {
+module.exports = (datos) => {
+  console.log(datos.dataPdf);
+
+  let datosTabla = "";
+
+  datos.dataPdf.map(
+    (item) =>
+      (datosTabla += `
+      <tr>
+         <td class="table__datos--head-subtitle-items">${
+           item.work_plan_no === null ? "" : item.work_plan_no
+         }</td>
+          <td class="table__datos--head-subtitle-items">
+            ${
+              datos.dataPdf[0].client_signature_timestamp ===
+              (undefined || null)
+                ? ""
+                : datos.dataPdf[0].client_signature_timestamp.substr(0, 10)
+            }
+          </td>
+          <td class="table__datos--head-subtitle-items">${
+            item.work_plan_detail_id === null ? "" : item.work_plan_detail_id
+          }</td>
+          <td class="table__datos--head-subtitle-items">${
+            datos.dataPdf[0].sedeName === null ? "" : datos.dataPdf[0].sedeName
+          }</td>
+          <td class="table__datos--head-subtitle-items">${
+            item.residue_physical_state === null
+              ? ""
+              : item.residue_physical_state
+          }</td>
+          <td class="table__datos--head-subtitle-items">${
+            item.residue === null ? "" : item.residue
+          }</td>
+          <td class="table__datos--head-subtitle-items">${
+            item.confirmed_weight === null ? "" : item.confirmed_weight
+          }</td>
+          <td class="table__datos--head-subtitle-items">${
+            item.confirmed_quantity === null ? "" : item.confirmed_quantity
+          }</td>
+          <td class="table__datos--head-subtitle-items" colspan="1">
+            ${
+              datos.dataPdf[0].contact_name === null
+                ? ""
+                : datos.dataPdf[0].contact_name
+            }
+          </td>
+          <td class="table__datos--head-subtitle-items" colspan="1">
+            ${
+              datos.dataPdf[0].contact_cc === null
+                ? ""
+                : datos.dataPdf[0].contact_cc
+            }
+          </td>
+      </tr>
+      `)
+  );
+
+  let cantidadBiologicos = 0;
+  let cantidadQuimicos = 0;
+  let cantidadIndustriales = 0;
+  let cantidadNoPeligrosos = 0;
+  let cantidadOtros = 0;
+  let cantidadRaees = 0;
+
   const biologicos = [
     "Biosanitarios",
     "Cortopunzantes",
@@ -53,27 +102,53 @@ module.exports = (
     "RES. HOSP PELIGROSO I",
   ];
 
-  let cantidadBiologicos = "0";
-  let cantidadQuimicos = "0";
-  let cantidadIndustriales = "0";
-  let cantidadNoPeligrosos = "0";
-  let cantidadOtros = "0";
-  let cantidadRaees = "0";
+  datos.dataPdf.map((tipoderesiduo) => {
+    console.log(tipoderesiduo.confirmed_weight);
+    biologicos.map((item) =>
+      item === tipoderesiduo.residue
+        ? (cantidadBiologicos += parseFloat(tipoderesiduo.confirmed_weight))
+        : null
+    );
 
-  biologicos.map((item) =>
-    item === residuo ? (cantidadBiologicos = cantidadKg) : null
-  );
+    quimicos.map((item) =>
+      item === tipoderesiduo.residue
+        ? (cantidadQuimicos += parseFloat(tipoderesiduo.confirmed_weight))
+        : null
+    );
 
-  quimicos.map((item) =>
-    item === residuo ? (cantidadQuimicos = cantidadKg) : null
-  );
-  industriales.map((item) =>
-    item === residuo ? (cantidadIndustriales = cantidadKg) : null
-  );
-  noPeligrosos.map((item) =>
-    item === residuo ? (cantidadNoPeligrosos = cantidadKg) : null
-  );
-  otros.map((item) => (item === residuo ? (cantidadOtros = cantidadKg) : null));
+    industriales.map((item) =>
+      item === tipoderesiduo.residue
+        ? (cantidadIndustriales += parseFloat(tipoderesiduo.confirmed_weight))
+        : null
+    );
+
+    noPeligrosos.map((item) =>
+      item === tipoderesiduo.residue
+        ? (cantidadNoPeligrosos += parseFloat(tipoderesiduo.confirmed_weight))
+        : null
+    );
+
+    otros.map((item) =>
+      item === tipoderesiduo.residue
+        ? (cantidadOtros += parseFloat(tipoderesiduo.confirmed_weight))
+        : null
+    );
+  });
+
+  // biologicos.map((item) =>
+  //   item === residuo ? (cantidadBiologicos = cantidadKg) : null
+  // );
+
+  // quimicos.map((item) =>
+  //   item === residuo ? (cantidadQuimicos = cantidadKg) : null
+  // );
+  // industriales.map((item) =>
+  //   item === residuo ? (cantidadIndustriales = cantidadKg) : null
+  // );
+  // noPeligrosos.map((item) =>
+  //   item === residuo ? (cantidadNoPeligrosos = cantidadKg) : null
+  // );
+  // otros.map((item) => (item === residuo ? (cantidadOtros = cantidadKg) : null));
   // raees.map((item) => item === residuo?cantidadRaees:null);
 
   return `<!DOCTYPE html>
@@ -219,7 +294,11 @@ height: 793px;
           <tr>
             <td class="table-header__td">Fecha de emision:
             <br>
+<<<<<<< HEAD
             ${fechaActual}
+=======
+            ${datos.dataPdf[0].fechaActual}
+>>>>>>> 7ac106a (Certificados Upload)
             </td>
             <td class="table-header__td">Version : 1.0</td>
             <td class="table-header__td">Proceso: Gestion Ambiental</td>
@@ -233,13 +312,15 @@ height: 793px;
           <tr>
             <th class="table__datos--head-subtitle" colspan="5">Cliente</th>
             <td class="table-datos__td"  colspan="7">${
-              nombreCompania === null ? "" : nombreCompania
+              datos.dataPdf[0].nombreCompania === null
+                ? ""
+                : datos.dataPdf[0].nombreCompania
             }</td>
           </tr>
           <tr>
             <th class="table__datos--head-subtitle" colspan="5">NIT</th>
             <td class="table-datos__td" colspan="7">${
-              nit === null ? "" : nit
+              datos.dataPdf[0].nit === null ? "" : datos.dataPdf[0].nit
             }</td>
           </tr>
           <tr>
@@ -278,6 +359,7 @@ height: 793px;
           </tr>
         </thead>
         <tbody>
+<<<<<<< HEAD
           <td class="table__datos--head-subtitle-items">${
             numeroWorkPlan === null ? "" : numeroWorkPlan
           }</td>
@@ -308,6 +390,9 @@ height: 793px;
           <td class="table__datos--head-subtitle-items" colspan="1">
             ${identificacion === null ? "" : identificacion}
           </td>
+=======
+     ${datosTabla}
+>>>>>>> 7ac106a (Certificados Upload)
         </tbody>
       </table>
 
