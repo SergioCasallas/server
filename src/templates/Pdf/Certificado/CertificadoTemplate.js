@@ -85,16 +85,13 @@ module.exports = (dataCertificadoPdf) => {
 .t-residuos__body{
   height: 30px;
   vertical-align: top;
-
 }
-
 
 .contenedor-subparagraph,
 .contenedor-subparagraph-left {
   width: 90%;
   margin: 10px auto;
   font-size: 15px;
-  /* background-color: red; */
 }
 
 .contenedor-subparagraph-left {
@@ -104,7 +101,6 @@ module.exports = (dataCertificadoPdf) => {
 .t-footer {
   text-align: center;
   width: 90%;
-  /* background-color: blueviolet; */
   margin: 0 auto;
   font-size: 13px;
 }

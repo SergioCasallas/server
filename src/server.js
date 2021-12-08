@@ -124,8 +124,6 @@ server.use(
 
 // ! Cerra Manifiestos Pdf
 
-// Archivos Estaticos
-// server.use(express.static(path.join(__dirname + "public")));
 
 const port = process.env.port || 5000;
 
