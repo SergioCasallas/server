@@ -2,7 +2,6 @@
 // ! Saldos
 
 module.exports = (datosReciboSaldosPdf) => {
-  // console.log(datosReciboSaldosPdf.saldos);
   console.log(datosReciboSaldosPdf.fechaInicial);
 
   let datosTable = "";
@@ -12,12 +11,12 @@ module.exports = (datosReciboSaldosPdf) => {
 
   datosReciboSaldosPdf.saldos[0].length > 1
     ? datosReciboSaldosPdf.saldos[0].map(
-        (item, index) => (
+        (item) => (
           (numeroSaldoFacturas += item.Valor), (numeroTotalSaldos += item.Saldo)
         )
       )
     : datosReciboSaldosPdf.saldos.map(
-        (item, index) => (
+        (item) => (
           (numeroSaldoFacturas += item.valor), (numeroTotalSaldos += item.saldo)
         )
       );
@@ -136,7 +135,7 @@ body {
 /* !Table Info */
 
 .table-info {
-  border-collapse: collapse; 
+  border-collapse: collapse;
   margin: 0 auto;
   width: 95%;
 }
@@ -250,7 +249,7 @@ body {
         </thead>
         <tbody class="table-info__body">
 
-${datosTable}
+          ${datosTable}
 
         </tbody>
       </table>

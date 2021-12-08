@@ -280,9 +280,7 @@ body {
           </tr>
         </thead>
         <tbody>
-
          ${tableID}
-
         </tbody>
       </table>
 

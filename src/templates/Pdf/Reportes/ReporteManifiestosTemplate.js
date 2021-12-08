@@ -58,9 +58,7 @@ module.exports = (datosManifiestoPdf) => {
 
   console.error(datosManifiestoPdf[0].residue_physical_state);
 
-
   return `
-
 
 <!DOCTYPE html>
 <html lang="en">
