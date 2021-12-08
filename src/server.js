@@ -1,18 +1,14 @@
 const express = require("express");
 const morgan = require("morgan");
-const path = require("path");
 const cors = require("cors");
 const { urlencoded, json } = require("body-parser");
 const helmet = require("helmet");
-// base de datos
 
+//! base de datos
 const connection = require("./db/db");
 
-// Server
+//! Server
 const server = express();
-
-// Middlewares
-// server.use(express.json());
 
 server
   .use(helmet())
