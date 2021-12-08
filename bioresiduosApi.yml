@@ -1,0 +1,256 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  ProjectBucketName:
+    Type: String
+    Description: Globally bucket used for files
+  DBHOST:
+    Type: String
+  DBUSER:
+    Type: String
+  DBPASSWORD:
+    Type: String
+  DBPORT:
+    Type: String
+  DBDATABASE:
+    Type: String
+  PATH:
+    Type: String
+  FONTCONFIGPATH:
+    Type: String
+  LDLIBRARYPATH:
+    Type: String
+  ApiStage:
+    Type: String
+    Default: api
+    Description: proxy api stage
+  LambdaCodeBucket:
+    Type: String
+    Default: bioresiduoslambdacode
+    Description: Globally used bucket for lambda code
+Resources:
+  #IAM resources
+  StackRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      RoleName: !Sub "stack_${AWS::StackName}"
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - "sts:AssumeRole"
+      Path: /
+      Policies:
+        - PolicyName: !Sub "stack_${AWS::StackName}"
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "logs:CreateLogGroup"
+                  - "logs:CreateLogStream"
+                  - "logs:PutLogEvents"
+                Resource: "arn:aws:logs:*:*:*"
+              - Effect: Allow
+                Action:
+                  - "execute-api:Invoke"
+                Resource:
+                  - !Sub "arn:aws:execute-api:*:*:*"
+              - Effect: Allow
+                Action:
+                  - "s3:PutObject"
+                  - "s3:GetObject"
+                  - "s3:DeleteObject"
+                  - "s3:*"
+                Resource:
+                  - !Sub "arn:aws:s3:::${ProjectBucket}/*"
+
+  ApiGatewayIAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "stack_${AWS::StackName}-api"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: ""
+            Effect: "Allow"
+            Principal:
+              Service:
+                - "apigateway.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        - PolicyName: LambdaAccess
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: "Allow"
+                Action: "lambda:*"
+                Resource:
+                  - !GetAtt BioResiduosApiLamdba.Arn
+
+  ## START OF API-PROXY RESOURCES
+
+  ProxyApiUsagePlan:
+    Type: "AWS::ApiGateway::UsagePlan"
+    Properties:
+      ApiStages:
+        - ApiId: !Ref ProxyRestAPIv2
+          Stage: !Ref ApiStage
+      Description: !Sub "Usage plan for Proxy API ${AWS::StackName}"
+      UsagePlanName: !Sub "${AWS::StackName}-unlimited-plan-proxy-api"
+    DependsOn: ProxyApiDeploymentx
+
+  ProxyApiDeploymentx:
+    Type: "AWS::ApiGateway::Deployment"
+    Properties:
+      RestApiId: !Ref ProxyRestAPIv2
+      StageName: !Ref ApiStage
+
+  ProxyRestAPIv2:
+    Type: "AWS::ApiGateway::RestApi"
+    Properties:
+      Description: "Proxy to Lambda Express API"
+      MinimumCompressionSize: 0
+      EndpointConfiguration:
+        Types:
+          - REGIONAL
+      Body:
+        openapi: 3.0.0
+        info:
+          version: 0.0.1
+          title: !Sub ${AWS::StackName}_proxy
+        paths:
+          /{proxy+}:
+            x-amazon-apigateway-any-method:
+              description: "Any HTTP method to App Express Lambda"
+              # security:
+              #   - proxy_api_key: []
+              responses:
+                "200":
+                  description: "OK"
+                "400":
+                  description: "Bad request"
+                "401":
+                  description: "Bad signature"
+                "404":
+                  description: "Not found"
+                "500":
+                  description: "Internal server error"
+              x-amazon-apigateway-integration:
+                type: aws_proxy
+                httpMethod: POST
+                credentials: !GetAtt ApiGatewayIAMRole.Arn
+                passthroughBehavior: when_no_match
+                uri: !Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${BioResiduosApiLamdba.Arn}/invocations"
+                responses:
+                  '2\d{2}':
+                    statusCode: "200"
+                  "400":
+                    statusCode: "400"
+                  "401":
+                    statusCode: "401"
+                  '4\d[2-9]':
+                    statusCode: "404"
+                  '5\d{2}':
+                    statusCode: "500"
+  ## END OF API-PROXY RESOURCES
+
+  ProjectBucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: !Ref ProjectBucketName
+      LifecycleConfiguration:
+        Rules:
+          - Id: ShippingLabelArchiveExpiration
+            Status: Enabled
+            Prefix: shipping-labels/
+            ExpirationInDays: 30
+
+  ## START OF API RESOURCES
+  BioResiduosApiLamdba:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      Layers:
+        - !Ref HtmlToPdfLayer3
+      FunctionName: !Sub "${AWS::StackName}_api-handler"
+      Description: "Manage the CRUD operations for the dynamoDB by the api"
+      Handler: src/index.handler
+      Role: !GetAtt StackRole.Arn
+      MemorySize: 128
+      Timeout: 90
+      Runtime: nodejs12.x
+      Code:
+        S3Bucket: !Ref LambdaCodeBucket
+        S3Key: !Sub "${AWS::StackName}.zip"
+      Environment:
+        Variables:
+          DB_HOST: !Ref DBHOST
+          DB_USER: !Ref DBUSER
+          DB_PASSWORD: !Ref DBPASSWORD
+          DB_DATABASE: !Ref DBDATABASE
+          PATH: !Ref PATH
+          FONTCONFIG_PATH: !Ref FONTCONFIGPATH
+          LD_LIBRARY_PATH: !Ref LDLIBRARYPATH
+          FILES_BUCKET: !Ref ProjectBucketName
+          USER_ID: !Ref UserAccessKey
+          USER_SECRET: !GetAtt
+            - UserAccessKey
+            - SecretAccessKey
+
+  QueueApiInvokePermission:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref BioResiduosApiLamdba
+      Principal: "apigateway.amazonaws.com"
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ProxyRestAPIv2}/*"
+
+  LambdaLayerPermission:
+    Type: "AWS::Lambda::LayerVersionPermission"
+    Properties:
+      Action: "lambda:GetLayerVersion"
+      LayerVersionArn: !Ref HtmlToPdfLayer3
+      Principal: "*"
+
+  HtmlToPdfLayer3:
+    Type: "AWS::Lambda::LayerVersion"
+    Properties:
+      LayerName: "HtmlToPdfLayer3"
+      Description: "Dependencies for the blank sample app."
+      Content:
+        S3Bucket: !Ref LambdaCodeBucket
+        S3Key: "executables.zip"
+      CompatibleRuntimes:
+        - "nodejs12.x"
+        - "nodejs14.x"
+
+  MainUser:
+    Type: "AWS::IAM::User"
+    Properties:
+      Policies:
+        - PolicyName: !Sub "${AWS::StackName}_presigned-user-policy"
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "s3:GetObject"
+                Resource: !Sub "arn:aws:s3:::${ProjectBucket}/*"
+      UserName: !Sub "${AWS::StackName}_user"
+  UserAccessKey:
+    Type: "AWS::IAM::AccessKey"
+    Properties:
+      UserName: !Ref MainUser
+
+Outputs:
+  MatragraApiUrl:
+    Description: Sku Conversion API Url.
+    Value: !Sub "https://${ProxyRestAPIv2}.execute-api.${AWS::Region}.amazonaws.com/${ApiStage}"
+    Export:
+      Name: !Sub ${AWS::StackName}::api-url
+## BORRAR EN CASO DE ERROS
