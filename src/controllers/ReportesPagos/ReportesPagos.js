@@ -6,6 +6,9 @@ exports.getReportesPagos = async (req, res) => {
   const { numeroReporte, fechaInicial, fechaFinal, pkClienteInicial } =
     req.body;
   console.log(`numero de factura ${numeroReporte}`);
+  console.log(`numero de fecha Inicial ${fechaInicial}`);
+  console.log(`numero de Fechas final ${fechaFinal}`);
+  console.log(`numero de pkClienteInicial ${pkClienteInicial}`);
 
   try {
     if (numeroReporte || (fechaInicial && fechaFinal)) {
@@ -23,7 +26,8 @@ exports.getReportesPagos = async (req, res) => {
             res.json(response);
             res.end();
           } else {
-            res.json({ mensaje: "Datos No Coinciden" });
+            console.log(response)
+            res.json({ mensaje: "No existe datos" });
             res.end();
           }
         }
