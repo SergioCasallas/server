@@ -1,5 +1,77 @@
 module.exports = (dataCertificadoPdf) => {
-  console.log(dataCertificadoPdf);
+  console.log(dataCertificadoPdf[0].fechaInicial);
+  console.log(dataCertificadoPdf[0].fechaFinal);
+
+  let cantidadBiologicos = 0;
+  let cantidadQuimicos = 0;
+  let cantidadIndustriales = 0;
+  let cantidadNoPeligrosos = 0;
+  let cantidadOtros = 0;
+  let cantidadRaees = 0;
+
+  const biologicos = [
+    "Biosanitarios",
+    "Cortopunzantes",
+    "Anatomopatologicos",
+    "Animales",
+    "COLCHON O COLCHONETA",
+    "Biosanitarios VacCovid19",
+    "Cortopunzantes VacCovid19",
+    "BIOSANITARIOS COVID19",
+  ];
+
+  const quimicos = [
+    "Medicamentos o Fármacos",
+    "Reactivos",
+    "Metales Pesados (Luminarías,Baterías,Amalgamas)",
+    "LIQUIDOS REVELADORES O FIJADORES",
+    "METALES PESADOS (PLOMO)",
+    "FARMACOS",
+    "LAMPARAS O LUMINARIAS",
+    "CITOTOXICO",
+    "Medicamentos VacCovid19",
+    "Farmacos VacCovid19",
+  ];
+  const industriales = [
+    "Aceites usados, Lodos Aceitodos,borras,pinturas,estopa,Mezcla de hidrocarburos y/o aceites",
+    "Mezclas y emulsiones de desechos de aceite y agua o derhidrocarburos y agua",
+    "LODOS, BORAS O ESTOPAS",
+  ];
+  const noPeligrosos = ["Ordinarios, reciclables"];
+  // const raees = ["", "", "", "", "", "", "", ""];
+  const otros = [
+    "RES. HOSP PELIGROSO Q",
+    "RES. HOSP PELIGROSO L",
+    "RES. HOSP PELIGROSO R",
+    "RES. HOSP PELIGROSO I",
+  ];
+
+  // ! Ciclo
+  // ! Dato uno
+  // ! if dato uno es igual
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+  // ! 
+
   let datosTable = "";
 
   dataCertificadoPdf.map((item) => {
@@ -78,13 +150,18 @@ module.exports = (dataCertificadoPdf) => {
 }
 
 .t-residuos__head{
-  height: 10px;
-  vertical-align: top;
+  padding: 0;
+}
+
+.t-residuos__head-x{
+  height: 1%;
+  margin: 0;
 }
 
 .t-residuos__body{
-  height: 30px;
   vertical-align: top;
+  height: 30px;
+
 }
 
 .contenedor-subparagraph,
@@ -175,15 +252,15 @@ module.exports = (dataCertificadoPdf) => {
           Que la entidad que lleva por razón social <b>${dataCertificadoPdf[0].nombreCompania}</b> con
           NIT No. <b>${dataCertificadoPdf[0].nit}</b>, ubicada en <b>${dataCertificadoPdf[0].company_address}</b> realizó la
           entrega de los siguientes residuos peligrosos durante el periodo
-          transcurrido del <b>FALTA</b> al <b>FALTA</b> </span
+          transcurrido del <b>${dataCertificadoPdf[0].fechaInicial}</b> al <b>${dataCertificadoPdf[0].fechaFinal}</b> </span
         >
       </div>
 
       <table class="t-residuos">
-        <tr class="t-residuos__head" >
-          <th>Tipo de Residuo</th>
-          <th>Descripcion</th>
-          <th>Peso Kg</th>
+        <tr class="t-residuos__head">
+          <th class="t-residuos__head-x">Tipo de Residuo</th>
+          <th class="t-residuos__head-x">Descripcion</th>
+          <th class="t-residuos__head-x">Peso Kg</th>
         </tr>
         ${datosTable}
       </table>

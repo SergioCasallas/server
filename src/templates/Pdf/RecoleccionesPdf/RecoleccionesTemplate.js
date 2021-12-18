@@ -1,7 +1,7 @@
 // !Recolecciones y Disponibilidad Final de Residuos// Saldos
 
 module.exports = (datos) => {
-  console.log(datos.dataPdf);
+  console.log(datos);
 
   let datosTabla = "";
 
@@ -294,11 +294,8 @@ height: 793px;
           <tr>
             <td class="table-header__td">Fecha de emision:
             <br>
-<<<<<<< HEAD
-            ${fechaActual}
-=======
             ${datos.dataPdf[0].fechaActual}
->>>>>>> 7ac106a (Certificados Upload)
+
             </td>
             <td class="table-header__td">Version : 1.0</td>
             <td class="table-header__td">Proceso: Gestion Ambiental</td>
@@ -359,40 +356,7 @@ height: 793px;
           </tr>
         </thead>
         <tbody>
-<<<<<<< HEAD
-          <td class="table__datos--head-subtitle-items">${
-            numeroWorkPlan === null ? "" : numeroWorkPlan
-          }</td>
-          <td class="table__datos--head-subtitle-items">
-            ${fechaHora === undefined || null ? "" : fechaHora}
-          </td>
-          <td class="table__datos--head-subtitle-items">${
-            numeroRecibo === null ? "" : numeroRecibo
-          }</td>
-          <td class="table__datos--head-subtitle-items">${
-            sede === null ? "" : sede
-          }</td>
-          <td class="table__datos--head-subtitle-items">${
-            tipoResiduoRecolectado === null ? "" : tipoResiduoRecolectado
-          }</td>
-          <td class="table__datos--head-subtitle-items">${
-            residuo === null ? "" : residuo
-          }</td>
-          <td class="table__datos--head-subtitle-items">${
-            cantidadKg === null ? "" : cantidadKg
-          }</td>
-          <td class="table__datos--head-subtitle-items">${
-            numeroBolsas === null ? "" : numeroBolsas
-          }</td>
-          <td class="table__datos--head-subtitle-items" colspan="1">
-            ${nombresRepartidos === null ? "" : nombresRepartidos}
-          </td>
-          <td class="table__datos--head-subtitle-items" colspan="1">
-            ${identificacion === null ? "" : identificacion}
-          </td>
-=======
      ${datosTabla}
->>>>>>> 7ac106a (Certificados Upload)
         </tbody>
       </table>
 

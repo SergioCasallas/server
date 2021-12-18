@@ -2,19 +2,26 @@ const mysql = require("../../db/db");
 const RecoleccionesDatosPdf = require("../../queries/RecoleccionesDatosPdf/RecoleccionesDatosPdf_queries");
 
 exports.getRecoleccionesDatosPdf = (req, res) => {
-  const { sede, numeroWorkPlan } = req.body;
+  const { sede, fechaInicial, fechaFinal } = req.body;
+
+  // console.log(sede);
+  // console.log(fechaInicial);
+  // console.log(fechaFinal);
 
   try {
     mysql.query(
-      RecoleccionesDatosPdf.getRecoleccionesDatosPdf(sede, numeroWorkPlan),
+      RecoleccionesDatosPdf.getRecoleccionesDatosPdf(
+        sede,
+        fechaInicial,
+        fechaFinal
+      ),
       (err, response) => {
         if (err) return err;
 
         if (response.length > 0) {
-          console.log(response);
           res.json(response);
         } else {
-          res.json({ mensaje: "errrs" });
+          res.json({ mensaje: "datos no encontrados" });
         }
       }
     );

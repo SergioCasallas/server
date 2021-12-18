@@ -11,40 +11,11 @@ exports.createPdf = async (req, res) => {
     orientation: "landscape",
   };
 
-  const {
-    fechaActual,
-    entreFechas,
-    nombreCompania,
-    nit,
-    numeroWorkPlan,
-    fechaHora,
-    numeroRecibo,
-    sede,
-    tipoResiduoRecolectado,
-    residuo,
-    cantidadKg,
-    numeroBolsas,
-    nombresRepartidos,
-    identificacion,
-  } = req.body;
+  const datos = req.body;
+
 
   try {
-    const template = pdfTemplate(
-      fechaActual,
-      entreFechas,
-      nombreCompania,
-      nit,
-      numeroWorkPlan,
-      fechaHora,
-      numeroRecibo,
-      sede,
-      tipoResiduoRecolectado,
-      residuo,
-      cantidadKg,
-      numeroBolsas,
-      nombresRepartidos,
-      identificacion
-    );
+    const template = pdfTemplate(datos);
 
     pdf
       .create(template, config)

@@ -13,6 +13,8 @@ const server = express();
 server
   .use(helmet())
   .use(cors())
+  .use(urlencoded({ extended: true, limit: "50mb" }))
+  .use(json({ limit: "50mb" }))
   .use(
     morgan((tokens, req, res) => {
       const morganConfig = [
@@ -26,9 +28,7 @@ server
       ];
       return morganConfig.join(` * `);
     })
-  )
-  .use(urlencoded({ extended: true, limit: "50mb" }))
-  .use(json({ limit: "50mb" }));
+  );
 require("dotenv").config();
 
 // Routes
@@ -55,6 +55,9 @@ server.use("/reportesManifiesto", require("./routes/ReportesManifiestos"));
 
 // !Datos Reportes Recolecciones
 server.use("/recoleccionesDatosPdf", require("./routes/RecoleccionesDatosPdf"));
+
+// !recuperarContrasena
+server.use("/recuperarContrasena", require("./routes/RecuperarContrasena"));
 
 // ! Recolecciones Pdf
 server.use(
@@ -110,7 +113,7 @@ server.use(
 
 // ! Cerra Manifiestos Pdf
 
-// ! Manifiestos Pdf
+// ! Certificado Pdf
 
 server.use(
   "/createCertificadoPdf",
@@ -122,8 +125,7 @@ server.use(
   require("./routes/Certificados/GetCertificadosPdf")
 );
 
-// ! Cerra Manifiestos Pdf
-
+// ! Cerra Certificado Pdf
 
 const port = process.env.port || 5000;
 
