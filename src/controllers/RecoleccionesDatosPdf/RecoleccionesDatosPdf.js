@@ -4,10 +4,6 @@ const RecoleccionesDatosPdf = require("../../queries/RecoleccionesDatosPdf/Recol
 exports.getRecoleccionesDatosPdf = (req, res) => {
   const { sede, fechaInicial, fechaFinal } = req.body;
 
-  // console.log(sede);
-  // console.log(fechaInicial);
-  // console.log(fechaFinal);
-
   try {
     mysql.query(
       RecoleccionesDatosPdf.getRecoleccionesDatosPdf(

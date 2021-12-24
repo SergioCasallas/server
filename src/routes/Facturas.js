@@ -7,4 +7,3 @@ router.post("/", getFacturas);
 
 module.exports = router;
 
-// const {}

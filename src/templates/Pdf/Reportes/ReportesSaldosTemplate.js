@@ -2,7 +2,6 @@
 // ! Saldos
 
 module.exports = (datosReciboSaldosPdf) => {
-  console.log(datosReciboSaldosPdf.fechaInicial);
 
   let datosTable = "";
 

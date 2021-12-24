@@ -6,11 +6,6 @@ exports.getReportesSaldos = (req, res) => {
   const { fechaInicial, fechaFinal, numeroReporte, pkClienteInicial } =
     req.body;
 
-  console.log(fechaInicial);
-  console.log(fechaFinal);
-  console.log(numeroReporte);
-  console.log(pkClienteInicial);
-
   try {
     if (numeroReporte || (fechaInicial && fechaFinal)) {
       mysql.query(

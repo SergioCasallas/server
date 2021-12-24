@@ -16,9 +16,11 @@ exports.sendEmail = async (req, res) => {
 
         sgMail.setApiKey(process.env.APY_KEY);
 
+        console.log(`"${process.env.from}"`);
+
         const mensaje = {
-          to: "sergio.casallas@iprocess.co",
-          from: "rbiorutas@bio-residuos.com.co",
+          to: Email,
+          from: process.env.from,
           subject: "Contraseña de Recuperacion",
           html: `
               <div>
@@ -30,7 +32,7 @@ exports.sendEmail = async (req, res) => {
 
         sgMail
           .send(mensaje)
-          .then((respuesta) => console.log(respuesta))
+          .then((respuesta) => console.log(respuesta.body))
           .catch((err) => console.log(err));
 
         res.json({ mensaje: "Correo Enviado" });

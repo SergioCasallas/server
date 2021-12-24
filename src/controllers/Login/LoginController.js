@@ -2,8 +2,9 @@ const mysql = require("../../db/db");
 const LoginQueries = require("../../queries/Login/Login_queries");
 
 exports.logearse = async (req, res) => {
-  const userEmail = req.body.user;
-  const userPassword = req.body.password;
+
+  const { user: userEmail, password: userPassword } = req.body;
+
   try {
     mysql.query(
       LoginQueries.userLogin(userEmail, userPassword),
@@ -11,7 +12,6 @@ exports.logearse = async (req, res) => {
         if (err) {
           res.send(err);
         }
-        console.log(`esto es el ${JSON.stringify(response)}`);
         if (response.length > 0) {
           res.json(response);
           res.end();

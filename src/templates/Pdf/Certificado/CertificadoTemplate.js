@@ -1,87 +1,255 @@
 module.exports = (dataCertificadoPdf) => {
-  console.log(dataCertificadoPdf[0].fechaInicial);
-  console.log(dataCertificadoPdf[0].fechaFinal);
+  console.log(dataCertificadoPdf);
 
-  let cantidadBiologicos = 0;
-  let cantidadQuimicos = 0;
-  let cantidadIndustriales = 0;
-  let cantidadNoPeligrosos = 0;
-  let cantidadOtros = 0;
-  let cantidadRaees = 0;
+  // let cantidadBiologicos = 0;
+  // let cantidadQuimicos = 0;
+  // let cantidadIndustriales = 0;
+  // let cantidadNoPeligrosos = 0;
+  // let cantidadOtros = 0;
+  // let cantidadRaees = 0;
 
-  const biologicos = [
-    "Biosanitarios",
-    "Cortopunzantes",
-    "Anatomopatologicos",
-    "Animales",
-    "COLCHON O COLCHONETA",
-    "Biosanitarios VacCovid19",
-    "Cortopunzantes VacCovid19",
-    "BIOSANITARIOS COVID19",
-  ];
+  // const biologicos = [
+  //   "Biosanitarios",
+  //   "Cortopunzantes",
+  //   "Anatomopatologicos",
+  //   "Animales",
+  //   "COLCHON O COLCHONETA",
+  //   "Biosanitarios VacCovid19",
+  //   "Cortopunzantes VacCovid19",
+  //   "BIOSANITARIOS COVID19",
+  // ];
 
-  const quimicos = [
-    "Medicamentos o Fármacos",
-    "Reactivos",
-    "Metales Pesados (Luminarías,Baterías,Amalgamas)",
-    "LIQUIDOS REVELADORES O FIJADORES",
-    "METALES PESADOS (PLOMO)",
-    "FARMACOS",
-    "LAMPARAS O LUMINARIAS",
-    "CITOTOXICO",
-    "Medicamentos VacCovid19",
-    "Farmacos VacCovid19",
-  ];
-  const industriales = [
-    "Aceites usados, Lodos Aceitodos,borras,pinturas,estopa,Mezcla de hidrocarburos y/o aceites",
-    "Mezclas y emulsiones de desechos de aceite y agua o derhidrocarburos y agua",
-    "LODOS, BORAS O ESTOPAS",
-  ];
-  const noPeligrosos = ["Ordinarios, reciclables"];
-  // const raees = ["", "", "", "", "", "", "", ""];
-  const otros = [
-    "RES. HOSP PELIGROSO Q",
-    "RES. HOSP PELIGROSO L",
-    "RES. HOSP PELIGROSO R",
-    "RES. HOSP PELIGROSO I",
-  ];
+  // const quimicos = [
+  //   "Medicamentos o Fármacos",
+  //   "Reactivos",
+  //   "Metales Pesados (Luminarías,Baterías,Amalgamas)",
+  //   "LIQUIDOS REVELADORES O FIJADORES",
+  //   "METALES PESADOS (PLOMO)",
+  //   "FARMACOS",
+  //   "LAMPARAS O LUMINARIAS",
+  //   "CITOTOXICO",
+  //   "Medicamentos VacCovid19",
+  //   "Farmacos VacCovid19",
+  // ];
+  // const industriales = [
+  //   "Aceites usados, Lodos Aceitodos,borras,pinturas,estopa,Mezcla de hidrocarburos y/o aceites",
+  //   "Mezclas y emulsiones de desechos de aceite y agua o derhidrocarburos y agua",
+  //   "LODOS, BORAS O ESTOPAS",
+  // ];
+  // const noPeligrosos = ["Ordinarios, reciclables"];
+  // // const raees = ["", "", "", "", "", "", "", ""];
+  // const otros = [
+  //   "RES. HOSP PELIGROSO Q",
+  //   "RES. HOSP PELIGROSO L",
+  //   "RES. HOSP PELIGROSO R",
+  //   "RES. HOSP PELIGROSO I",
+  // ];
 
-  // ! Ciclo
-  // ! Dato uno
-  // ! if dato uno es igual
-  // ! 
-  // ! 
-  // ! 
-  // ! 
-  // ! 
-  // ! 
-  // ! 
-  // ! 
-  // ! 
-  // ! 
-  // ! 
-  // ! 
-  // ! 
-  // ! 
-  // ! 
-  // ! 
-  // ! 
-  // ! 
-  // ! 
-  // ! 
-  // ! 
-  // ! 
+  // const Biosanitarios = 0;
+  // const Cortopunzantes = 0;
+  // const Anatomopatologicos = 0;
+  // const Animales = 0;
+  // const COLCHONOCOLCHONETA = 0;
+  // const BiosanitariosVacCovid19 = 0;
+  // const CortopunzantesVacCovid19 = 0;
+  // const BIOSANITARIOSCOVID19 = 0;
+
+  // const MedicamentosoFármacos = 0;
+  // const Reactivos = 0;
+  // const MetalesPesadosLuminaríasBateríasAmalgamas = 0;
+  // const LIQUIDOSREVELADORESOFIJADORES = 0;
+  // const METALESPESADOSPLOMO = 0;
+  // const FARMACOS = 0;
+  // const LAMPARASOLUMINARIAS = 0;
+  // const CITOTOXICO = 0;
+  // const MedicamentosVacCovid19 = 0;
+  // const FarmacosVacCovid19 = 0;
+
+  // const AceitesusadosLodosAceitodosborraspinturasestopaMezcladehidrocarburosyoaceites = 0;
+  // const Mezclasyemulsionesdedesechosdeaceiteyaguaoderhidrocarburosyagua = 0;
+  // const LODOSBORASOESTOPAS = 0;
+
+  // const Ordinariosreciclables = 0;
+
+  // const RESHOSPPELIGROSOQ = 0;
+  // const RESHOSPPELIGROSOL = 0;
+  // const RESHOSPPELIGROSOR = 0;
+  // const RESHOSPPELIGROSOI = 0;
 
   let datosTable = "";
 
   dataCertificadoPdf.map((item) => {
     datosTable += `
         <tr>
-          <td  class="t-residuos__body" >${item.residue_physical_state}</td>
-          <td  class="t-residuos__body" >${item.residue}</td>
-          <td  class="t-residuos__body" >${item.confirmed_weight}</td>
-        </tr>`;
+          <td  class="t-residuos__body" >Biologicos y/o Infecciosos</td>
+          <td  class="t-residuos__body" >Biosanitarios</td>
+          <td  class="t-residuos__body" >${item.totalesBiosanitarios}</td>
+        </tr>
+        
+        <tr>
+          <td  class="t-residuos__body" >Biologicos y/o Infecciosos</td>
+          <td  class="t-residuos__body" >Cortopunzantes</td>
+          <td  class="t-residuos__body" >${item.totalesCortopunzantes}</td>
+        </tr>
+        
+            
+        <tr>
+          <td  class="t-residuos__body" >Biologicos y/o Infecciosos</td>
+          <td  class="t-residuos__body" >Anatomopatologicos</td>
+          <td  class="t-residuos__body" >${item.totalesAnatomopatologicos}</td>
+        </tr>
+        
+            
+        <tr>
+          <td  class="t-residuos__body" >Biologicos y/o Infecciosos</td>
+          <td  class="t-residuos__body" >Animales</td>
+          <td  class="t-residuos__body" >${item.totalesAnimales}</td>
+        </tr>
+        
+            
+        <tr>
+          <td  class="t-residuos__body" >Biologicos y/o Infecciosos</td>
+          <td  class="t-residuos__body" >COLCHON O COLCHONETA</td>
+          <td  class="t-residuos__body" >${item.totalesCOLCHONOCOLCHONETA}</td>
+        </tr>
+        
+            
+        <tr>
+          <td  class="t-residuos__body" >Biologicos y/o Infecciosos</td>
+          <td  class="t-residuos__body" >Biosanitarios VacCovid19</td>
+          <td  class="t-residuos__body" >${item.totalesBiosanitariosVacCovid19}</td>
+        </tr>
+        
+            
+        <tr>
+          <td  class="t-residuos__body" >Biologicos y/o Infecciosos</td>
+          <td  class="t-residuos__body" >Cortopunzantes VacCovid19</td>
+          <td  class="t-residuos__body" >${item.totalesCortopunzantesVacCovid19}</td>
+        </tr>
+        
+            
+        <tr>
+          <td  class="t-residuos__body" >Biologicos y/o Infecciosos</td>
+          <td  class="t-residuos__body" >BIOSANITARIOS COVID19</td>
+          <td  class="t-residuos__body" >${item.totalesBIOSANITARIOSCOVID19}</td>
+        </tr>
+        
+            
+        <tr>
+          <td  class="t-residuos__body" >Quimicos</td>
+          <td  class="t-residuos__body" >Medicamentos o Fármacos</td>
+          <td  class="t-residuos__body" >${item.totalesMedicamentosoFármacos}</td>
+        </tr>
+        
+            
+        <tr>
+          <td  class="t-residuos__body" >Quimicos</td>
+          <td  class="t-residuos__body" >Reactivos</td>
+          <td  class="t-residuos__body" >${item.totalesReactivos}</td>
+        </tr>
+        
+
+
+
+
+        `;
   });
+
+  // <tr>
+  //   <td  class="t-residuos__body" >Quimicos</td>
+  //   <td  class="t-residuos__body" >Metales Pesados (Luminarías,Baterías,Amalgamas)</td>
+  //   <td  class="t-residuos__body" >${item.totalesMetalesPesadosLuminaríasBateríasAmalgamas}</td>
+  // </tr>
+
+  // <tr>
+  //   <td  class="t-residuos__body" >Quimicos</td>
+  //   <td  class="t-residuos__body" >LIQUIDOS REVELADORES O FIJADORES</td>
+  //   <td  class="t-residuos__body" >${item.totalesLIQUIDOSREVELADORESOFIJADORES}</td>
+  // </tr>
+
+  // <tr>
+  //   <td  class="t-residuos__body" >Quimicos</td>
+  //   <td  class="t-residuos__body" >METALES PESADOS (PLOMO)</td>
+  //   <td  class="t-residuos__body" >${item.totalesMETALESPESADOSPLOMO}</td>
+  // </tr>
+
+  // <tr>
+  //   <td  class="t-residuos__body" >Quimicos</td>
+  //   <td  class="t-residuos__body" >FARMACOS</td>
+  //   <td  class="t-residuos__body" >${item.totalesFARMACOS}</td>
+  // </tr>
+
+  // <tr>
+  //   <td  class="t-residuos__body" >Quimicos</td>
+  //   <td  class="t-residuos__body" >LAMPARAS O LUMINARIAS</td>
+  //   <td  class="t-residuos__body" >${item.totalesLAMPARASOLUMINARIAS}</td>
+  // </tr>
+
+  // <tr>
+  //   <td  class="t-residuos__body" >Quimicos</td>
+  //   <td  class="t-residuos__body" >CITOTOXICO</td>
+  //   <td  class="t-residuos__body" >${item.totalesCITOTOXICO}</td>
+  // </tr>
+
+  // <tr>
+  // <td  class="t-residuos__body" >Quimicos</td>
+  // <td  class="t-residuos__body" >Medicamentos VacCovid19</td>
+  // <td  class="t-residuos__body" >${item.totalesMedicamentosVacCovid19}</td>
+  // </tr>
+
+  // <tr>
+  // <td  class="t-residuos__body" >Quimicos</td>
+  // <td  class="t-residuos__body" >Farmacos VacCovid19</td>
+  // <td  class="t-residuos__body" >${item.totalesFarmacosVacCovid19}</td>
+  // </tr>
+
+  // <tr>
+  // <td  class="t-residuos__body" > Industriales</td>
+  // <td  class="t-residuos__body" >Aceites usados, Lodos Aceitodos,borras,pinturas,estopa,etc</td>
+  // <td  class="t-residuos__body" >${item.totalesAceitesusadosLodosAceitodosborraspinturasestopaMezcladehidrocarburosyoaceite}</td>
+  // </tr>
+
+  // <tr>
+  // <td  class="t-residuos__body" >Industriales</td>
+  // <td  class="t-residuos__body" >Mezclas y emulsiones de desechos de aceite y agua,etc</td>
+  // <td  class="t-residuos__body" >${item.totalesMezclasyemulsionesdedesechosdeaceiteyaguaoderhidrocarburosyagua}</td>
+  // </tr>
+
+  // <tr>
+  // <td  class="t-residuos__body" >Industriales</td>
+  // <td  class="t-residuos__body" >LODOS, BORAS O ESTOPAS</td>
+  // <td  class="t-residuos__body" >${item.totalesLODOSBORASOESTOPAS}</td>
+  // </tr>
+
+  // <tr>
+  // <td  class="t-residuos__body" >No Peligrosos</td>
+  // <td  class="t-residuos__body" >Ordinarios, reciclables</td>
+  // <td  class="t-residuos__body" >${item.totalesOrdinariosreciclables}</td>
+  // </tr>
+
+  // <tr>
+  // <td  class="t-residuos__body" >otros</td>
+  // <td  class="t-residuos__body" >RES. HOSP PELIGROSO Q</td>
+  // <td  class="t-residuos__body" >${item.totalesRESHOSPPELIGROSOQ}</td>
+  // </tr>
+
+  // <tr>
+  // <td  class="t-residuos__body" >otros</td>
+  // <td  class="t-residuos__body" >RES. HOSP PELIGROSO L</td>
+  // <td  class="t-residuos__body" >${item.totalesRESHOSPPELIGROSOL}</td>
+  // </tr>
+
+  // <tr>
+  // <td  class="t-residuos__body" >otros</td>
+  // <td  class="t-residuos__body" >RES. HOSP PELIGROSO R</td>
+  // <td  class="t-residuos__body" >${item.totalesRESHOSPPELIGROSOR}</td>
+  // </tr>
+
+  //   <tr>
+  //   <td  class="t-residuos__body" >otros</td>
+  //   <td  class="t-residuos__body" >RES. HOSP PELIGROSO I</td>
+  //   <td  class="t-residuos__body" >${item.totalesRESHOSPPELIGROSOI}</td>
+  // </tr>
 
   return `
     <!DOCTYPE html>

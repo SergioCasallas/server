@@ -5,7 +5,6 @@ const RecoleccionesQueries = require("../../queries/Recolecciones/Recolecciones_
 exports.getDetallesRecoleccion = async (req, res) => {
   const { UUIDSede, fechaInicial, fechaFinal, residue, numeroReporte } =
     req.body;
-  console.log(numeroReporte);
   try {
     if (residue && ((fechaFinal && fechaInicial) || UUIDSede)) {
       mysql.query(
@@ -16,7 +15,6 @@ exports.getDetallesRecoleccion = async (req, res) => {
           residue
         ),
         (err, response) => {
-          console.log(response);
           if (err) console.log(err);
 
           if (response.length > 0) {
@@ -53,7 +51,6 @@ exports.getDetallesRecoleccion = async (req, res) => {
         (err, response) => {
           if (err) console.log(err);
 
-          console.log(response);
 
           if (response.length > 0) {
             res.json(response);

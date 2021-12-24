@@ -45,8 +45,6 @@ exports.getRecoleccionesFechas = (UUIDSede, fechaInicial, fechaFinal) => {
 };
 
 exports.getRecoleccionesWorkPlan = (numeroReporte, UUIDSede) => {
-  console.log(numeroReporte);
-  console.log(UUIDSede);
   if (typeof UUIDSede !== "string") {
     return `SELECT UUID_Sede,work_plan_detail_id,contact_name,contact_cc,residue_physical_state,work_plan_no, company_address, created_date, residue, confirmed_weight, confirmed_quantity  FROM rp_track_and_trace_framework.tbl_rp_tx_work_plan_details where work_plan_no='${numeroReporte}' and UUID_Sede in (${UUIDSede.map(
       (item) => `"${item.UUID}"`

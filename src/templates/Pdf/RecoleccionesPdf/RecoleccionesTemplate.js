@@ -1,7 +1,6 @@
 // !Recolecciones y Disponibilidad Final de Residuos// Saldos
 
 module.exports = (datos) => {
-  console.log(datos);
 
   let datosTabla = "";
 
@@ -103,7 +102,6 @@ module.exports = (datos) => {
   ];
 
   datos.dataPdf.map((tipoderesiduo) => {
-    console.log(tipoderesiduo.confirmed_weight);
     biologicos.map((item) =>
       item === tipoderesiduo.residue
         ? (cantidadBiologicos += parseFloat(tipoderesiduo.confirmed_weight))

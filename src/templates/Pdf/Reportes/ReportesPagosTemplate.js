@@ -1,7 +1,6 @@
 // ! Informe de Recolecciones
 
 module.exports = (datosReciboPagosPdf) => {
-  console.log(datosReciboPagosPdf.fechaInicial);
   let count = 0;
   let tableID = "";
 
