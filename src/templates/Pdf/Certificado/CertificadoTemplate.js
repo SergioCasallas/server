@@ -352,7 +352,18 @@ module.exports = (dataCertificadoPdf) => {
 
 .t-footer__images {
   float: right;
-  width: 100px;
+  width: 50px;
+}
+
+.t-footer__images-firma{
+  width: 200px;
+  float: right;
+  margin-right:110px;
+  height: 50px;
+}
+
+.t-footer__image-firma{
+
 }
 
 .t-footer__td {
@@ -464,10 +475,12 @@ module.exports = (dataCertificadoPdf) => {
 
       <table class="t-footer">
         <tr>
-          <td>
+          <td
+          class="t-footer__image-firma"
+          >
             <img
-              class="t-footer__images"
-              src="https://firebasestorage.googleapis.com/v0/b/react-chat-930bc.appspot.com/o/Logo.png?alt=media&token=06a8dc4b-a0a8-4ca7-8eda-0470d2f9c5c4"
+              class="t-footer__images-firma"
+              src="https://firebasestorage.googleapis.com/v0/b/react-chat-930bc.appspot.com/o/Firma%20Jabib%20N.jpg?alt=media&token=7cf9f2cf-ac13-44eb-a995-40e6c25b3a23"
               alt=""
             />
           </td>
@@ -475,7 +488,7 @@ module.exports = (dataCertificadoPdf) => {
           <td>
             <img
               class="t-footer__images"
-              src="https://firebasestorage.googleapis.com/v0/b/react-chat-930bc.appspot.com/o/Logo.png?alt=media&token=06a8dc4b-a0a8-4ca7-8eda-0470d2f9c5c4"
+              src="https://firebasestorage.googleapis.com/v0/b/react-chat-930bc.appspot.com/o/LOGO%20ICONTEC%20BIO.png?alt=media&token=8a6fb962-2a5c-4e3f-9937-271ca439555c"
               alt=""
             />
           </td>
