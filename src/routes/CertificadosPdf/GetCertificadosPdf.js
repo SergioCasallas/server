@@ -3,7 +3,7 @@ const router = express.Router();
 
 const {
   getCertificadoPdf,
-} = require("../../controllers/Certificado/GetCertificadoPdfController");
+} = require("../../controllers/CertificadoPdf/GetCertificadoPdfController");
 
 router.get("/", getCertificadoPdf);
 

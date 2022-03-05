@@ -1,6 +1,7 @@
 // ! Manifiesto
 
 module.exports = (datosManifiestoPdf) => {
+  console.log(datosManifiestoPdf);
   const {
     UUID_Sede,
     client_signature,

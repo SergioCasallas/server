@@ -15,20 +15,7 @@ server
   .use(cors())
   .use(urlencoded({ extended: true, limit: "50mb" }))
   .use(json({ limit: "50mb" }))
-  .use(
-    morgan((tokens, req, res) => {
-      const morganConfig = [
-        `Remote Address: ${req.ip}` || req.connection.remoteAddress,
-        `Method: ${tokens.method(req, res)}`,
-        `URL: ${tokens.url(req, res)}`,
-        `Params: ${JSON.stringify(req.params)}`,
-        `Body: ${JSON.stringify(req.body)}`,
-        `Status: ${tokens.status(req, res)}`,
-        `Response Time: ${tokens["response-time"](req, res)}ms`,
-      ];
-      return morganConfig.join(` * `);
-    })
-  );
+  .use(morgan("dev"));
 require("dotenv").config();
 
 // Routes
@@ -43,6 +30,10 @@ server.use("/facturas", require("./routes/Facturas"));
 
 server.use("/recolecciones", require("./routes/Recolecciones"));
 
+server.use("/manifiestos", require("./routes/Manifiestos"));
+
+server.use("/new-password", require("./routes/NewPassword"));
+
 // !Datos Reportes Pagos
 
 server.use("/reportesPagos", require("./routes/ReportesPagos"));
@@ -53,8 +44,11 @@ server.use("/reportesSaldos", require("./routes/ReportesSaldos"));
 // !Datos Reportes Saldos
 server.use("/reportesManifiesto", require("./routes/ReportesManifiestos"));
 
+// !Datos Reportes Saldos
+server.use("/certificados", require("./routes/Certificados"));
+
 // !Datos Reportes Recolecciones
-server.use("/recoleccionesDatosPdf", require("./routes/RecoleccionesDatosPdf"));
+// server.use("/recoleccionesDatosPdf", require("./routes/RecoleccionesDatosPdf"));
 
 // !recuperarContrasena
 server.use("/recuperarContrasena", require("./routes/RecuperarContrasena"));
@@ -117,12 +111,12 @@ server.use(
 
 server.use(
   "/createCertificadoPdf",
-  require("./routes/Certificados/CreateCertificadosPdf")
+  require("./routes/CertificadosPdf/CreateCertificadosPdf")
 );
 
 server.use(
   "/getCertificadoPdf",
-  require("./routes/Certificados/GetCertificadosPdf")
+  require("./routes/CertificadosPdf/GetCertificadosPdf")
 );
 
 // ! Cerra Certificado Pdf

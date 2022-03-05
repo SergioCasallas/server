@@ -2,13 +2,15 @@
 
 exports.getFacturasFechas = (fechaInicial, fechaFinal, pkCliente) => {
 
-  return `SELECT * FROM rp_track_and_trace_framework.Bio_Factura WHERE UUID_Cliente = '${pkCliente}' AND (Fecha BETWEEN '${fechaInicial}' AND '${fechaFinal}')`;
+  return `SELECT * FROM rp_track_and_trace_framework.Bio_Factura WHERE UUID_Cliente = '${pkCliente}' AND (Fecha BETWEEN '${fechaInicial}' AND '${fechaFinal}') AND Estado <>"Anulada"  ORDER BY fecha DESC`;
 };
 
 exports.getFacturas = (fechaInicial, fechaFinal, pkCliente, factura) => {
-  return `SELECT * FROM rp_track_and_trace_framework.Bio_Factura WHERE UUID_Cliente = '${pkCliente}' AND (Fecha BETWEEN '${fechaInicial}' AND '${fechaFinal}') AND Numero ='${factura}'`;
+  return `SELECT * FROM rp_track_and_trace_framework.Bio_Factura WHERE UUID_Cliente = '${pkCliente}' AND (Fecha BETWEEN '${fechaInicial}' AND '${fechaFinal}') AND Numero ='${factura}' AND Estado <>"Anulada" ORDER BY fecha DESC`;
 };
 
 exports.getFactura = (pkCliente, factura) => {
-  return `SELECT * FROM rp_track_and_trace_framework.Bio_Factura WHERE UUID_Cliente = '${pkCliente}' AND Numero ='${factura}'`;
+  return `SELECT * FROM rp_track_and_trace_framework.Bio_Factura WHERE UUID_Cliente = '${pkCliente}' AND Numero ='${factura}' AND Estado <>"Anulada" ORDER BY fecha DESC`;
 };
+
+// And Estado

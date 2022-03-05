@@ -39,7 +39,7 @@ const RecoleccionesFooterTemplate=require("../../templates/Pdf/Recolecciones/Rec
 exports.createPdf = async (req, res) => {
   const { datos } = req.body;
 
-  const pdf = async() => {
+  const pdfRecolecciones = async() => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
@@ -67,7 +67,7 @@ exports.createPdf = async (req, res) => {
       res.json("ok")
   };
 
-  pdf(datos)
+  pdfRecolecciones();
 
 };
 
