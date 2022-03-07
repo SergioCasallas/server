@@ -6,6 +6,7 @@ exports.getReportesPagos = async (req, res) => {
   const { numeroReporte, fechaInicial, fechaFinal, pkClienteInicial } =
     req.body;
 
+    
 
   try {
     if (numeroReporte || (fechaInicial && fechaFinal)) {

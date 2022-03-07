@@ -1,7 +1,28 @@
+const mysql = require("../../db/db");
+const NewPasswordQueries = require("../../queries/NewPassword/NewPassword_queries");
+
 exports.newPassword = (req, res) => {
-  const { data } = req.body;
+  const { newPassword, UUID } = req.body.datos;
 
-  console.log(data)
+  console.log(newPassword);
+  console.log(UUID);
 
-  res.json({ mensaje: "Datos" });
+  try {
+    mysql.query(
+      NewPasswordQueries.sendNewPassword(newPassword, UUID),
+      (err, response) => {
+        if (err) {
+          console.log(err);
+        }
+
+        if (response) {
+          res.json({response});
+        }else{
+          res.json({ mensaje: "Error" });
+        }
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
 };
