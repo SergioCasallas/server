@@ -5,6 +5,6 @@ const {
   getRecoleccionesPdf,
 } = require("../../controllers/RecoleccionesPdf/GetRecoleccionesPdfController");
 
-router.get("/", getRecoleccionesPdf);
+router.post("/", getRecoleccionesPdf);
 
 module.exports = router;

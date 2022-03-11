@@ -11,10 +11,10 @@ module.exports = (datos) => {
   datos.map(
     (item) => (
       item.confirmed_weight !== null
-        ? (pesoTotal += parseInt(item.confirmed_weight))
+        ? (pesoTotal += parseFloat(item.confirmed_weight))
         : (pesoTotal += 0),
       item.confirmed_quantity !== null
-        ? (bolsasTotal += parseInt(item.confirmed_quantity))
+        ? (bolsasTotal += parseFloat(item.confirmed_quantity))
         : (bolsasTotal += 0)
     )
   );

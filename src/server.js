@@ -48,7 +48,7 @@ server.use("/reportesManifiesto", require("./routes/ReportesManifiestos"));
 server.use("/certificados", require("./routes/Certificados"));
 
 // !Datos Reportes Recolecciones
-// server.use("/recoleccionesDatosPdf", require("./routes/RecoleccionesDatosPdf"));
+server.use("/recoleccionesDatosPdf", require("./routes/RecoleccionesDatosPdf"));
 
 // !recuperarContrasena
 server.use("/recuperarContrasena", require("./routes/RecuperarContrasena"));

@@ -46,7 +46,7 @@ exports.createPdf = async (req, res) => {
     const htmlContent = RecoleccionesTemplate(datos);
     await page.setContent(htmlContent);
     await page.pdf({
-      path: "PdfsArchiveFinal/Recolecciones.pdf",
+      path: `PdfsArchiveFinal/Recolecciones${datos.data[0].nit}.pdf`,
       format: "Letter",
       displayHeaderFooter: true,
       headerTemplate: RecoleccionesHeaderTemplate(datos.data[0]),
