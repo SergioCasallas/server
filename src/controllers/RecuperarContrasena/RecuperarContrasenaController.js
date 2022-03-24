@@ -16,8 +16,6 @@ exports.sendEmail = async (req, res) => {
 
         sgMail.setApiKey(process.env.APY_KEY);
 
-        console.log(`"${process.env.from}"`);
-
         const mensaje = {
           to: Email,
           from: process.env.from,

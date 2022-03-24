@@ -4,9 +4,6 @@ const NewPasswordQueries = require("../../queries/NewPassword/NewPassword_querie
 exports.newPassword = (req, res) => {
   const { newPassword, UUID } = req.body.datos;
 
-  console.log(newPassword);
-  console.log(UUID);
-
   try {
     mysql.query(
       NewPasswordQueries.sendNewPassword(newPassword, UUID),

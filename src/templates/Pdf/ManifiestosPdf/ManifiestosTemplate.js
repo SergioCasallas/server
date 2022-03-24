@@ -12,11 +12,21 @@ module.exports = (datos) => {
       (item) =>
         (datosTable += `
      <tr class="table-info__body-tr-item">
-              <td class="table-info__body-td">${item.residue_type?item.residue_type:""}</td>
-              <td class="table-info__body-td">${item.residue?item.residue:""}</td>
-              <td class="table-info__body-td">${item.confirmed_weight?item.confirmed_weight:""}</td>
-              <td class="table-info__body-td">${item.confirmed_quantity?item.confirmed_quantity:""}</td>
-              <td class="table-info__body-td">${item.package?item.package:""}</td>
+              <td class="table-info__body-td">${
+                item.residue_physical_state ? item.residue_physical_state : ""
+              }</td>
+              <td class="table-info__body-td">${
+                item.residue ? item.residue : ""
+              }</td>
+              <td class="table-info__body-td">${
+                item.confirmed_weight ? item.confirmed_weight : ""
+              }</td>
+              <td class="table-info__body-td">${
+                item.confirmed_quantity ? item.confirmed_quantity : ""
+              }</td>
+              <td class="table-info__body-td">${
+                item.package ? item.destroy_buckets : ""
+              }</td>
             </tr>
     `)
     );
@@ -86,7 +96,7 @@ module.exports = (datos) => {
 
     .table-info__thead-th{
         font-weight:100;
-        font-size:12;
+        font-size:12px;
       }
 
 
@@ -99,7 +109,7 @@ module.exports = (datos) => {
 
       .table-info__body-tr {
         height: 10%;
-        font-size:11;
+        font-size:10px;
       }
 
       .table-info__body-tr-item {
@@ -107,74 +117,11 @@ module.exports = (datos) => {
     }
 
     .table-info__body-td{
-          font-size;11px;
+          font-size:10px;
           padding:4px;
+           text-transform: capitalize;
       }
 
-      /* !table Registo */
-
-      .table-registro-fotografico {
-        text-align: center;
-        width: 95%;
-        margin: 0 auto;
-      }
-
-      .table-registro-fotografico__td-vacio,
-      .table-registro-fotografico__th-vacio {
-        width: 50%;
-      }
-
-      .table-registro-fotografico__image {
-        width: 100%;
-        background-color:red;
-      }
-
-      .table-registro-fotografico__container-images{
-          background-color:red;
-          width:100%;
-          display: flex;
-          flex-direction: row;
-      }
-
-      .table-registro-fotografico__title{
-          text-align:left;
-          font-size:15px;
-      }
-
-
-      /* ! Table Observaciones*/
-
-      .table-entrega-info {
-        width: 100%;
-        text-align: center;
-        border-collapse: collapse;
-        position: absolute;
-        bottom: 2%;
-        margin: 0 auto;
-      }
-
-      .table-entrega-info__observaciones {
-        text-align: left;
-      }
-
-      .table-entrega-info__entregado {
-        width: 20%;
-      }
-
-      .table-entrega-info__imagen-firma {
-        margin: 0 auto;
-        padding: 0;
-        width: 50px;
-      }
-
-      .table-entrega-info__td {
-        width: calc(100% / 4);
-      }
-
-      .table-entrega-info__td-footer {
-        text-align: center;
-        font-size: 10px;
-      }
     </style>
   </head>
   <body>

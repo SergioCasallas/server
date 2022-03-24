@@ -54,7 +54,6 @@ module.exports = (datos) => {
 
   datos.data.map((tipoderesiduo) => {
     if (isNaN) {
-      console.log(tipoderesiduo.confirmed_weight);
 
       tipoderesiduo.residue_physical_state === "Biologicos y/o Infecciosos"
         ? (cantidadBiologicos += parseFloat(tipoderesiduo.confirmed_weight))

@@ -13,7 +13,6 @@ exports.getDatosManifiestos = (req, res) => {
           if (err) console.log(err);
 
           if (response.length > 0) {
-            console.log(response)
             res.json(response);
             res.end();
           } else {

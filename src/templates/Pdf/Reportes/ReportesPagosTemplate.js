@@ -261,6 +261,8 @@ body {
           <tr class="table-head-tr-superiores">
             <th colspan="3" class='table-info__head-th-superiores'>${
               datosReciboPagosPdf.nombreCompania
+                ? datosReciboPagosPdf.nombreCompania
+                : ""
             }</thr>
             <th colspan="3" class='table-info__head-th-superiores'>NIT:${
               datosReciboPagosPdf.nit
