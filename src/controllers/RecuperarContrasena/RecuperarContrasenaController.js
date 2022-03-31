@@ -14,10 +14,13 @@ exports.sendEmail = async (req, res) => {
       if (response.length > 0) {
         const { Email, Contraseña, Cliente } = response[0];
 
+        console.log(Email)
+
         sgMail.setApiKey(process.env.APY_KEY);
 
         const mensaje = {
-          to: Email,
+          // to: Email,
+          to:"sergio.casallas@iprocess.co",
           from: process.env.from,
           subject: "Contraseña de Recuperacion",
           html: `
@@ -30,10 +33,12 @@ exports.sendEmail = async (req, res) => {
 
         sgMail
           .send(mensaje)
-          .then((respuesta) => console.log(respuesta.body))
+          .then(() =>
+            res.json({
+              mensaje: `Se envio la contraseña de a correo: ${Email}`,
+            })
+          )
           .catch((err) => console.log(err));
-
-        res.json({ mensaje: "Correo Enviado" });
       } else {
         res.json({ error: "Datos no encontrados" });
       }

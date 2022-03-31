@@ -124,7 +124,7 @@ module.exports = (datos) => {
             />
           </th>
           <th class="t-header__title" colspan="3">
-            <h1>Document</h1>
+            <h1>Documento</h1>
           </th>
         </tr>
         <tr>

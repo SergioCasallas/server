@@ -1,10 +1,11 @@
 const puppeteer = require("puppeteer");
 
-const RecoleccionesTemplate=require("../../templates/Pdf/Recolecciones/Recolecciones.js")
-const RecoleccionesHeaderTemplate=require("../../templates/Pdf/Recolecciones/RecoleccionesHeaderTemplate")
-const RecoleccionesFooterTemplate=require("../../templates/Pdf/Recolecciones/RecoleccionesFooterTemplate")
+const RecoleccionesTemplate = require("../../templates/Pdf/Recolecciones/Recolecciones.js");
+const RecoleccionesHeaderTemplate = require("../../templates/Pdf/Recolecciones/RecoleccionesHeaderTemplate");
+const RecoleccionesFooterTemplate = require("../../templates/Pdf/Recolecciones/RecoleccionesFooterTemplate");
 
-
+const fs = require("fs");
+const path = require("path");
 // const datosDummy = [
 //   {
 //     UUID_Sede: "AA4955B0-00B2-B046-8BB9-D7555A38B96C",
@@ -39,7 +40,7 @@ const RecoleccionesFooterTemplate=require("../../templates/Pdf/Recolecciones/Rec
 exports.createPdf = async (req, res) => {
   const { datos } = req.body;
 
-  const pdfRecolecciones = async() => {
+  const pdfRecolecciones = async () => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
@@ -63,19 +64,22 @@ exports.createPdf = async (req, res) => {
 
     await browser.close();
 
-      res.status(200);
-      res.json("ok")
+    // res
+    //   .setHeader("Content-Type", "application/octet-stream")
+    //   .status(200)
+    //   .download(
+    //       `PdfsArchiveFinal/Recolecciones${datos.data[0].nit}.pdf`
+    //   );
+
+    res.status(200).json("ok");
   };
 
   pdfRecolecciones();
-
 };
 
-
 // !###############################################################################################################
 
 // !###############################################################################################################
-
 
 // const pdf = require("html-pdf");
 // const pdfTemplate = require("../../templates/Pdf/RecoleccionesPdf/RecoleccionesTemplate");

@@ -2,7 +2,6 @@ const fs = require("fs");
 const path = require("path");
 
 exports.getRecoleccionesPdf = (req, res) => {
-
   // const nit  = req.body.datos.data[0].nit;
 
   res.setHeader("Content-Type", "application/octet-stream");
@@ -12,7 +11,7 @@ exports.getRecoleccionesPdf = (req, res) => {
       `../../../PdfsArchiveFinal/Recolecciones${req.body.data[0].nit}.pdf`
     )
   );
-  
+
   setTimeout(() => {
     fs.unlink(
       path.join(
@@ -26,30 +25,6 @@ exports.getRecoleccionesPdf = (req, res) => {
         }
       }
     );
-    }, 5000);
-    res.status(200);
+  }, 5000);
+  res.status(200);
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

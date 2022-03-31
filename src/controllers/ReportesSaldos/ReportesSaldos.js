@@ -19,6 +19,7 @@ exports.getReportesSaldos = (req, res) => {
           if (err) console.log(err);
 
           if (response !== undefined && response.length > 0) {
+            console.log(response)
             res.json(response);
             res.end();
           } else {
