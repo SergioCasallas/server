@@ -4,39 +4,6 @@ const RecoleccionesTemplate = require("../../templates/Pdf/Recolecciones/Recolec
 const RecoleccionesHeaderTemplate = require("../../templates/Pdf/Recolecciones/RecoleccionesHeaderTemplate");
 const RecoleccionesFooterTemplate = require("../../templates/Pdf/Recolecciones/RecoleccionesFooterTemplate");
 
-const fs = require("fs");
-const path = require("path");
-// const datosDummy = [
-//   {
-//     UUID_Sede: "AA4955B0-00B2-B046-8BB9-D7555A38B96C",
-//     primary_secondary: "Primary",
-//     work_plan_detail_id: 1198601,
-//     contact_name: "Carlos MartÃ­nez Anaya",
-//     contact_cc: "1007218368",
-//     residue_physical_state: "Biologicos y/o Infecciosos",
-//     work_plan_no: "BIO09522",
-//     company_address: "CL 29 18 81 B/SAN JOSE",
-//     created_date: "2022-02-02 00:00:00",
-//     residue: "Biosanitarios",
-//     confirmed_weight: "75.58",
-//     confirmed_quantity: "10",
-//   },
-//   {
-//     UUID_Sede: "AA4955B0-00B2-B046-8BB9-D7555A38B96C",
-//     primary_secondary: "Primary",
-//     work_plan_detail_id: 1198601,
-//     contact_name: "Carlos MartÃ­nez Anaya",
-//     contact_cc: "1007218368",
-//     residue_physical_state: "Biologicos y/o Infecciosos",
-//     work_plan_no: "BIO09522",
-//     company_address: "CL 29 18 81 B/SAN JOSE",
-//     created_date: "2022-02-02 00:00:00",
-//     residue: "Biosanitarios",
-//     confirmed_weight: "75.58",
-//     confirmed_quantity: "10",
-//   },
-// ];
-
 exports.createPdf = async (req, res) => {
   const { datos } = req.body;
 
@@ -63,13 +30,6 @@ exports.createPdf = async (req, res) => {
     });
 
     await browser.close();
-
-    // res
-    //   .setHeader("Content-Type", "application/octet-stream")
-    //   .status(200)
-    //   .download(
-    //       `PdfsArchiveFinal/Recolecciones${datos.data[0].nit}.pdf`
-    //   );
 
     res.status(200).json("ok");
   };

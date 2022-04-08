@@ -7,6 +7,9 @@ const CertificadosFooter = require("../../templates/Pdf/Certificado/CertificadoF
 exports.createCertificadoPdf = (req, res) => {
   const { dataCertificadoPdf } = req.body;
 
+  console.log(dataCertificadoPdf);
+
+
   const pdfCertificado = async () => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();

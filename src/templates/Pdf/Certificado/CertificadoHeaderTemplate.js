@@ -186,7 +186,7 @@ module.exports = (datos) => {
           NIT No. <b>${
             datos.nit
           }</b>, ubicada en <b>
-          Crarrera 7d#-78-05
+          ${datos.Direccion}
           </b> realizó la
           entrega de los siguientes residuos peligrosos durante el periodo
           transcurrido del <b>${datos.Periodo}</b></span
