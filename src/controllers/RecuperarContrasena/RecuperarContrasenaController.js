@@ -35,7 +35,7 @@ exports.sendEmail = async (req, res) => {
           .send(mensaje)
           .then(() =>
             res.json({
-              mensaje: `Se envio la contraseña de a correo: ${Email}`,
+              mensaje: `Se envio la contraseña al siquiente correo: ${Email}`,
             })
           )
           .catch((err) => console.log(err));

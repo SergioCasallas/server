@@ -263,31 +263,7 @@ module.exports = (datos) => {
           <th class="table-entrega-info__entregado" rowspan="2">
             Entregado por:
           </th>
-          <td class="table-entrega-info__td">
-            ${datos[0].driver_name}
-          </td>
-          <td class="table-entrega-info__td">${datos[0].driver_id}</td>
-          <td class="table-entrega-info__td">
-           ${
-             datos[0].driver_signature_path
-               ? `<img class="table-entrega-info__imagen-firma"
-              src="data:image/png;base64,${datos[0].driver_signature_path}" alt=""  />`
-               : `<img class="table-entrega-info__imagen-firma"
-              src="./download.png" alt=""  />`
-           }
-          </td>
-        </tr>
-        <tr>
-          <td>Nombre</td>
-          <td>Cedula</td>
-          <td>Firma</td>
-        </tr>
-
-        <tr>
-          <th class="table-entrega-info__entregado" rowspan="2">
-            Recibido por:
-          </th>
-          <td class="table-entrega-info__td">
+             <td class="table-entrega-info__td">
           ${datos[0].contact_name ? datos[0].contact_name : ""}
           </td>
           <td class="table-entrega-info__td">
@@ -301,6 +277,32 @@ module.exports = (datos) => {
                   : `<img class="table-entrega-info__imagen-firma"
               src="./download.png" alt=""  />`
               }
+          </td>
+        </tr>
+        <tr>
+          <td>Nombre</td>
+          <td>Cedula</td>
+          <td>Firma</td>
+        </tr>
+
+        <tr>
+          <th class="table-entrega-info__entregado" rowspan="2">
+            Recibido por:
+          </th>
+
+
+           <td class="table-entrega-info__td">
+            ${datos[0].driver_name}
+          </td>
+          <td class="table-entrega-info__td">${datos[0].driver_id}</td>
+          <td class="table-entrega-info__td">
+           ${
+             datos[0].driver_signature_path
+               ? `<img class="table-entrega-info__imagen-firma"
+              src="data:image/png;base64,${datos[0].driver_signature_path}" alt=""  />`
+               : `<img class="table-entrega-info__imagen-firma"
+              src="./download.png" alt=""  />`
+           }
           </td>
         </tr>
         <tr>

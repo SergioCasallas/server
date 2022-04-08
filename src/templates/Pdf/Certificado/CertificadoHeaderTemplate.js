@@ -3,6 +3,8 @@ const BioLogo64 =
 
 module.exports = (datos) => {
 
+  console.log(datos)
+
   return `
        <!DOCTYPE html>
 <html lang="en">
@@ -183,7 +185,9 @@ module.exports = (datos) => {
           }</b> con
           NIT No. <b>${
             datos.nit
-          }</b>, ubicada en <b>Cra #54 - 45  </b> realizó la
+          }</b>, ubicada en <b>
+          Crarrera 7d#-78-05
+          </b> realizó la
           entrega de los siguientes residuos peligrosos durante el periodo
           transcurrido del <b>${datos.Periodo}</b></span
         >

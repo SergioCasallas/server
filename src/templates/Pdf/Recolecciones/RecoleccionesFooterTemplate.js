@@ -54,7 +54,6 @@ module.exports = (datos) => {
 
   datos.data.map((tipoderesiduo) => {
     if (isNaN) {
-
       tipoderesiduo.residue_physical_state === "Biologicos y/o Infecciosos"
         ? (cantidadBiologicos += parseFloat(tipoderesiduo.confirmed_weight))
         : null;
@@ -201,35 +200,55 @@ module.exports = (datos) => {
           </tr>
           <tr class="table-secondary__head-tr">
             <th class="table-secondary__th" width="0%">RESIDUOS QUIMICOS</th>
-            <th class="table-secondary__th" width="0%">${cantidadQuimicos}</th>
+            <th class="table-secondary__th" width="0%">${
+              cantidadQuimicos == 0
+                ? cantidadQuimicos
+                : cantidadQuimicos.toFixed(2)
+            }</th>
           </tr>
           <tr class="table-secondary__head-tr">
             <th class="table-secondary__th" width="0%">RESIDUOS BIOLOGICOS</th>
-            <th class="table-secondary__th" width="0%">${cantidadBiologicos}</th>
+            <th class="table-secondary__th" width="0%">${
+              cantidadBiologicos == 0
+                ? cantidadBiologicos
+                : cantidadBiologicos.toFixed(2)
+            }</th>
           </tr>
           <tr class="table-secondary__head-tr">
             <th class="table-secondary__th" width="0%">RESIDUOS INDUSTRIALES</th>
-            <th class="table-secondary__th" width="0%">${cantidadIndustriales}</th>
+            <th class="table-secondary__th" width="0%">${
+              cantidadIndustriales == 0
+                ? cantidadIndustriales
+                : cantidadIndustriales.toFixed(2)
+            }</th>
           </tr>
           <tr class="table-secondary__head-tr">
             <th class="table-secondary__th" width="0%">RESIDUOS NO PELIGROSOS</th>
-            <th class="table-secondary__th" width="0%">${cantidadNoPeligrosos}</th>
+            <th class="table-secondary__th" width="0%">${
+              cantidadNoPeligrosos == 0
+                ? cantidadNoPeligrosos
+                : cantidadNoPeligrosos.toFixed(2)
+            }</th>
           </tr>
           <tr class="table-secondary__head-tr">
             <th class="table-secondary__th" width="0%">RAEES</th>
-            <th class="table-secondary__th" width="0%">${cantidadRaees}</th>
+            <th class="table-secondary__th" width="0%">${
+              cantidadRaees == 0 ? cantidadRaees : cantidadRaees.toFixed(2)
+            }</th>
           </tr>
           <tr class="table-secondary__head-tr">
             <th class="table-secondary__th" width="0%">OTROS</th>
-            <th class="table-secondary__th" width="0%">${cantidadOtros}</th>
+            <th class="table-secondary__th" width="0%">${
+              cantidadOtros == 0 ? cantidadOtros : cantidadOtros.toFixed(2)
+            }</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th class="table-secondary__th table-secondary__th-total" colspan="3" width="90%">TOTAL KG</th>
-            <th class="table-secondary__th" width="0%">${parseFloat(
-              totalKg
-            ).toFixed(2)}</th>
+            <th class="table-secondary__th" width="0%">${totalKg.toFixed(
+              2
+            )}</th>
           </tr>
         </tbody>
       </table>
