@@ -20,6 +20,11 @@ require("dotenv").config();
 
 // Routes
 
+app.get("/", function (request, response) {
+  var result = "App is running";
+  response.send(result);
+});
+
 //! Data-Login
 server.use("/login", require("./routes/Login"));
 
