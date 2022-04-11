@@ -5,6 +5,6 @@ const {
   getCertificadoPdf,
 } = require("../../controllers/CertificadoPdf/GetCertificadoPdfController");
 
-router.get("/", getCertificadoPdf);
+router.post("/", getCertificadoPdf);
 
 module.exports = router;

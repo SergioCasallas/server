@@ -3,8 +3,6 @@ const BioLogo64 =
 
 module.exports = (datos) => {
 
-  console.log(datos)
-
   return `
        <!DOCTYPE html>
 <html lang="en">

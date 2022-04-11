@@ -7,8 +7,6 @@ const CertificadosFooter = require("../../templates/Pdf/Certificado/CertificadoF
 exports.createCertificadoPdf = (req, res) => {
   const { dataCertificadoPdf } = req.body;
 
-  console.log(dataCertificadoPdf);
-
 
   const pdfCertificado = async () => {
     const browser = await puppeteer.launch();
@@ -17,7 +15,7 @@ exports.createCertificadoPdf = (req, res) => {
     const htmlContent = CertificadosTemplate(dataCertificadoPdf);
     await page.setContent(htmlContent);
     await page.pdf({
-      path: "PdfsArchiveFinal/Certificado.pdf",
+      path: `PdfsArchiveFinal/Certificado${dataCertificadoPdf[0].nit}.pdf`,
       format: "Letter",
       displayHeaderFooter: true,
       headerTemplate: CertificadosHeader(dataCertificadoPdf[0]),

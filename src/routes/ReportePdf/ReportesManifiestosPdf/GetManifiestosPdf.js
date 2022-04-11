@@ -5,6 +5,6 @@ const {
   getManifiestosPdf,
 } = require("../../../controllers/ReportesPdf/ReportesManifiestos/GetReporteManifiestoController");
 
-router.get("/", getManifiestosPdf);
+router.post("/", getManifiestosPdf);
 
 module.exports = router;

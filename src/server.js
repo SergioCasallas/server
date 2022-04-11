@@ -66,32 +66,22 @@ server.use(
 
 // !Cerrar Recolecciones Pdf
 
-// ! Reportes Pagos Pdf
+
+// ! Certificado Pdf
 
 server.use(
-  "/createReportesPagosPdf",
-  require("./routes/ReportePdf/ReportesPagosPdf/CreateReportesPagos")
+  "/createCertificadoPdf",
+  require("./routes/CertificadosPdf/CreateCertificadosPdf")
 );
 
 server.use(
-  "/getReportesPagosPdf",
-  require("./routes/ReportePdf/ReportesPagosPdf/GetReportesPagos")
+  "/getCertificadoPdf",
+  require("./routes/CertificadosPdf/GetCertificadosPdf")
 );
 
-// !Cerrar Reportes Pagos Pdf
+// ! Cerra Certificado Pdf
 
-// ! Saldos Pdf
 
-server.use(
-  "/createReportesSaldosPdf",
-  require("./routes/ReportePdf/ReportesSaldosPdf/CreateReportesSaldos")
-);
-server.use(
-  "/getReportesSaldosPdf",
-  require("./routes/ReportePdf/ReportesSaldosPdf/GetReportesSaldos")
-);
-
-// ! CerrarSaldos Pdf
 
 // ! Manifiestos Pdf
 
@@ -107,19 +97,37 @@ server.use(
 
 // ! Cerra Manifiestos Pdf
 
-// ! Certificado Pdf
+
+
+// ! Saldos Pdf
 
 server.use(
-  "/createCertificadoPdf",
-  require("./routes/CertificadosPdf/CreateCertificadosPdf")
+  "/createReportesSaldosPdf",
+  require("./routes/ReportePdf/ReportesSaldosPdf/CreateReportesSaldos")
+);
+server.use(
+  "/getReportesSaldosPdf",
+  require("./routes/ReportePdf/ReportesSaldosPdf/GetReportesSaldos")
+);
+
+// ! CerrarSaldos Pdf
+
+// ! Reportes Pagos Pdf
+
+server.use(
+  "/createReportesPagosPdf",
+  require("./routes/ReportePdf/ReportesPagosPdf/CreateReportesPagos")
 );
 
 server.use(
-  "/getCertificadoPdf",
-  require("./routes/CertificadosPdf/GetCertificadosPdf")
+  "/getReportesPagosPdf",
+  require("./routes/ReportePdf/ReportesPagosPdf/GetReportesPagos")
 );
 
-// ! Cerra Certificado Pdf
+// !Cerrar Reportes Pagos Pdf
+
+
+
 
 const port = process.env.port || 5000;
 

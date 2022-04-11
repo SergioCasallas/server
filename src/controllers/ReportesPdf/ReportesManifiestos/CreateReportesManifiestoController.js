@@ -17,7 +17,7 @@ exports.createManifiestoPdf = async (req, res) => {
     const htmlContent = ManifiestosTemplate(respuesta.data);
     await page.setContent(htmlContent);
     await page.pdf({
-      path: "PdfsArchiveFinal/Manifiestos.pdf",
+      path: `PdfsArchiveFinal/Manifiestos${respuesta.data[0].nit}.pdf`,
       format: "Letter",
       displayHeaderFooter: true,
       headerTemplate: ManifiestosHeaderTemplate(respuesta.data[0]),

@@ -170,7 +170,7 @@ module.exports = (datos) => {
             height:6px;
             word-wrap: break-word;
             overflow: hidden;
-            font-weight:100; 
+            font-weight:100;
       }
 
 
