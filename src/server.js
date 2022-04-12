@@ -20,7 +20,7 @@ require("dotenv").config();
 
 // Routes
 
-app.get("/", function (request, response) {
+server.get("/", function (request, response) {
   var result = "App is running";
   response.send(result);
 });
