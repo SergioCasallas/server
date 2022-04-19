@@ -1,8 +1,8 @@
-const puppeteer = require("puppeteer");
+const puppeteer = require('puppeteer');
 
-const RecoleccionesTemplate = require("../../templates/Pdf/Recolecciones/Recolecciones.js");
-const RecoleccionesHeaderTemplate = require("../../templates/Pdf/Recolecciones/RecoleccionesHeaderTemplate");
-const RecoleccionesFooterTemplate = require("../../templates/Pdf/Recolecciones/RecoleccionesFooterTemplate");
+const RecoleccionesTemplate = require('../../templates/Pdf/Recolecciones/Recolecciones.js');
+const RecoleccionesHeaderTemplate = require('../../templates/Pdf/Recolecciones/RecoleccionesHeaderTemplate');
+const RecoleccionesFooterTemplate = require('../../templates/Pdf/Recolecciones/RecoleccionesFooterTemplate');
 
 exports.createPdf = async (req, res) => {
   const { datos } = req.body;
@@ -15,23 +15,24 @@ exports.createPdf = async (req, res) => {
     await page.setContent(htmlContent);
     await page.pdf({
       path: `PdfsArchiveFinal/Recolecciones${datos.data[0].nit}.pdf`,
-      format: "Letter",
+      format: 'Letter',
       displayHeaderFooter: true,
       headerTemplate: RecoleccionesHeaderTemplate(datos.data[0]),
       footerTemplate: RecoleccionesFooterTemplate(datos),
       printBackground: true,
       landscape: true,
       margin: {
-        top: "250px",
-        left: "0px",
-        bottom: "200px",
-        right: "0px",
+        top: '250px',
+        left: '0px',
+        bottom: '200px',
+        right: '0px',
       },
+      timeout: 0,
     });
 
     await browser.close();
 
-    res.status(200).json("ok");
+    res.status(200).json('ok');
   };
 
   pdfRecolecciones();

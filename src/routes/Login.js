@@ -1,9 +1,13 @@
-const express = require("express");
+const express = require('express');
 
 const router = express.Router();
 
-const { logearse } = require("../controllers/Login/LoginController");
+const { logearse } = require('../controllers/Login/LoginController');
 
-router.post("/", logearse);
+router.post('/', logearse);
+//router.post("/", function (req, res) {
+//      res.header("Access-Control-Allow-Origin", "*");
+//      logearse
+//});
 
 module.exports = router;
