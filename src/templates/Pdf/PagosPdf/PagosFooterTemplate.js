@@ -4,8 +4,13 @@ module.exports = (datosReciboPagosPdf) => {
   let count = 0;
 
   datosReciboPagosPdf.pago[0].length > 1
-    ? datosReciboPagosPdf.pago[0].map((item) => (count += item.Saldo))
-    : datosReciboPagosPdf.pago.map((item) => (count += item.Saldo));
+    ? datosReciboPagosPdf.pago[0].map((item) => (count += item.Neto))
+    : datosReciboPagosPdf.pago.map((item) => (count += item.Neto));
+
+
+     datosReciboPagosPdf.pago[0].length > 1
+       ? datosReciboPagosPdf.pago[0].map((item) => console.log(item))
+       : datosReciboPagosPdf.pago.map((item) => console.log(item));
 
   const separadorMiles = (numero, separador = ".") => {
     if (typeof numero !== "number" || !Number.isInteger(numero)) {

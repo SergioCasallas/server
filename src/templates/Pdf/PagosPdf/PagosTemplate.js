@@ -38,7 +38,7 @@ module.exports = (datosReciboPagosPdf) => {
             ${item.Fecha !== null ? item.Fecha.substr(0, 10) : ""}
             </td>
             <td class="table-body-td" width="15%">
-                     $  ${item.Valor !== null ? separadorMiles(item.Valor) : ""}
+            $ ${item.Valor !== null ? separadorMiles(item.Valor) : ""}
             </td>
             <td class="table-body-td" width="15%">
                $ ${separadorMiles(item.Valor - item.Saldo)}

@@ -7,13 +7,14 @@ const PagosFooterTemplate = require("../../../templates/Pdf/PagosPdf/PagosFooter
 exports.createReportesPagosPdf = async (req, res) => {
   const { datosReciboPagosPdf } = req.body;
 
-  const PagosPdfpdf = async () => {
+
+  const PagosPdf = async () => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     const htmlContent = PagosTemplate(datosReciboPagosPdf);
     await page.setContent(htmlContent);
     await page.pdf({
-      path: "PdfsArchiveFinal/ReportesPagos.pdf",
+      path: `PdfsArchiveFinal/ReportesPagos${datosReciboPagosPdf.nit}.pdf`,
       format: "A4",
       landscape: true,
       displayHeaderFooter: true,
@@ -34,8 +35,7 @@ exports.createReportesPagosPdf = async (req, res) => {
 
   };
 
-
-  PagosPdfpdf();
+  PagosPdf();
 };
 
 // const pdf = require("html-pdf");

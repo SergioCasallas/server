@@ -13,7 +13,7 @@ exports.createReporteSaldos = (req, res) => {
     const htmlContent = SaldosTemplate(datosReciboSaldosPdf);
     await page.setContent(htmlContent);
     await page.pdf({
-      path: "PdfsArchiveFinal/ReportesSaldos.pdf",
+      path: `PdfsArchiveFinal/ReportesSaldos${datosReciboSaldosPdf.nit}.pdf`,
       format: "Letter",
       displayHeaderFooter: true,
       printBackground: true,
@@ -30,7 +30,7 @@ exports.createReporteSaldos = (req, res) => {
 
   await browser.close();
 
-  res.json({ mensaje: "okf" }).status(200)
+  res.json({ mensaje: "ok" }).status(200)
 
 
   };

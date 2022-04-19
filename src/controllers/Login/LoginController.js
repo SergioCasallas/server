@@ -13,6 +13,7 @@ exports.logearse = async (req, res) => {
           res.send(err);
         }
         if (response.length > 0) {
+          res.set("Access-Control-Allow-Origin", "*");
           res.json(response);
           res.end();
         } else {

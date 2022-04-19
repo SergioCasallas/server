@@ -5,6 +5,6 @@ const {
   getReporteSaldos,
 } = require("../../../controllers/ReportesPdf/ReportesSaldos/GetReporteSaldosController");
 
-router.get("/", getReporteSaldos);
+router.post("/", getReporteSaldos);
 
 module.exports = router;
